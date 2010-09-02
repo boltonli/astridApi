@@ -6,7 +6,6 @@ package com.todoroo.astrid.api;
 import android.content.ContentValues;
 import android.graphics.Bitmap;
 import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * CustomFilterCriteria allow users to build a custom filter by chaining
@@ -15,7 +14,7 @@ import android.os.Parcelable;
  * @author Tim Su <tim@todoroo.com>
  *
  */
-public final class CustomFilterCriterion implements Parcelable {
+abstract public class CustomFilterCriterion {
 
     /**
      * Criteria Identifier. This identifier allows saved filters to be reloaded.
@@ -54,16 +53,6 @@ public final class CustomFilterCriterion implements Parcelable {
     public ContentValues valuesForNewTasks = null;
 
     /**
-     * Array of entries for user to select from
-     */
-    public String[] entryTitles;
-
-    /**
-     * Array of entry values corresponding to entries
-     */
-    public String[] entryValues;
-
-    /**
      * Icon for this criteria. Can be null for no bitmap
      */
     public Bitmap icon;
@@ -73,78 +62,29 @@ public final class CustomFilterCriterion implements Parcelable {
      */
     public String name;
 
-    /**
-     * Create a new CustomFilterCriteria object
-     *
-     * @param title
-     * @param sql
-     * @param valuesForNewTasks
-     * @param entryTitles
-     * @param entryValues
-     * @param icon
-     * @param name
-     */
-    public CustomFilterCriterion(String identifier, String title, String sql,
-            ContentValues valuesForNewTasks, String[] entryTitles,
-            String[] entryValues, Bitmap icon, String name) {
-        this.identifier = identifier;
-        this.text = title;
-        this.sql = sql;
-        this.valuesForNewTasks = valuesForNewTasks;
-        this.entryTitles = entryTitles;
-        this.entryValues = entryValues;
-        this.icon = icon;
-        this.name = name;
-    }
-
-    // --- parcelable
+    // --- parcelable utilities
 
     /**
-     * {@inheritDoc}
+     * Utility method to write to parcel
      */
-    public int describeContents() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(Parcel dest) {
         dest.writeString(identifier);
         dest.writeString(text);
         dest.writeString(sql);
         dest.writeParcelable(valuesForNewTasks, 0);
-        dest.writeStringArray(entryTitles);
-        dest.writeStringArray(entryValues);
         dest.writeParcelable(icon, 0);
         dest.writeString(name);
     }
 
     /**
-     * Parcelable Creator Object
+     * Utility method to read from parcel
      */
-    public static final Parcelable.Creator<CustomFilterCriterion> CREATOR = new Parcelable.Creator<CustomFilterCriterion>() {
-
-        /**
-         * {@inheritDoc}
-         */
-        public CustomFilterCriterion createFromParcel(Parcel source) {
-            CustomFilterCriterion item = new CustomFilterCriterion(
-                    source.readString(), source.readString(), source.readString(),
-                    (ContentValues)source.readParcelable(ContentValues.class.getClassLoader()),
-                    source.createStringArray(), source.createStringArray(),
-                    (Bitmap)source.readParcelable(Bitmap.class.getClassLoader()),
-                    source.readString());
-            return item;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public CustomFilterCriterion[] newArray(int size) {
-            return new CustomFilterCriterion[size];
-        }
-
-    };
-
+    public void readFromParcel(Parcel source) {
+        identifier = source.readString();
+        text = source.readString();
+        sql = source.readString();
+        valuesForNewTasks = (ContentValues)source.readParcelable(ContentValues.class.getClassLoader());
+        icon = (Bitmap)source.readParcelable(Bitmap.class.getClassLoader());
+        name = source.readString();
+    }
 }
