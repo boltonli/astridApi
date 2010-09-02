@@ -47,6 +47,24 @@ public class SyncAction implements Parcelable {
         return label;
     }
 
+    @Override
+    public int hashCode() {
+        return label.hashCode() ^ intent.getTargetPackage().hashCode();
+    }
+
+    /**
+     * We consider two sync actions equal if target package is identical
+     * and the labels are the same. This prevents duplicate pendingIntents
+     * from creating multiple SyncAction objects.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof SyncAction))
+            return false;
+        SyncAction other = (SyncAction) o;
+        return label.equals(other.label) && intent.getTargetPackage().equals(other.intent.getTargetPackage());
+    }
+
     // --- parcelable helpers
 
     /**

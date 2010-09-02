@@ -14,11 +14,11 @@ import android.net.Uri;
 
 import com.todoroo.andlib.data.AbstractModel;
 import com.todoroo.andlib.data.Property;
+import com.todoroo.andlib.data.Table;
+import com.todoroo.andlib.data.TodorooCursor;
 import com.todoroo.andlib.data.Property.IntegerProperty;
 import com.todoroo.andlib.data.Property.LongProperty;
 import com.todoroo.andlib.data.Property.StringProperty;
-import com.todoroo.andlib.data.Table;
-import com.todoroo.andlib.data.TodorooCursor;
 import com.todoroo.andlib.utility.DateUtilities;
 import com.todoroo.astrid.api.AstridApiConstants;
 import com.todoroo.astrid.api.R;
@@ -294,6 +294,7 @@ public final class Task extends AbstractModel {
     public static final int HIDE_UNTIL_DAY_BEFORE = 2;
     public static final int HIDE_UNTIL_WEEK_BEFORE = 3;
     public static final int HIDE_UNTIL_SPECIFIC_DAY = 4;
+    public static final int HIDE_UNTIL_SPECIFIC_DAY_TIME = 5;
 
     /**
      * Creates due date for this task. If this due date has no time associated,
@@ -373,6 +374,7 @@ public final class Task extends AbstractModel {
             date = getValue(DUE_DATE) - DateUtilities.ONE_WEEK;
             break;
         case HIDE_UNTIL_SPECIFIC_DAY:
+        case HIDE_UNTIL_SPECIFIC_DAY_TIME:
             date = customDate;
             break;
         default:
@@ -383,9 +385,11 @@ public final class Task extends AbstractModel {
             return date;
 
         Date hideUntil = new Date(date / 1000L * 1000L); // get rid of millis
-        hideUntil.setHours(0);
-        hideUntil.setMinutes(0);
-        hideUntil.setSeconds(0);
+        if(setting != HIDE_UNTIL_SPECIFIC_DAY_TIME) {
+            hideUntil.setHours(0);
+            hideUntil.setMinutes(0);
+            hideUntil.setSeconds(0);
+        }
         return hideUntil.getTime();
     }
 
