@@ -115,6 +115,10 @@ public final class Task extends AbstractModel {
     public static final LongProperty REMINDER_LAST = new LongProperty(
             TABLE, "lastNotified");
 
+    /** Unixtime snooze is set (0 -> no snooze) */
+    public static final LongProperty REMINDER_SNOOZE = new LongProperty(
+            TABLE, "snoozeTime");
+
     public static final StringProperty RECURRENCE = new StringProperty(
             TABLE, "recurrence");
 
@@ -184,6 +188,8 @@ public final class Task extends AbstractModel {
         defaultValues.put(RECURRENCE.name, "");
         defaultValues.put(REMINDER_PERIOD.name, 0);
         defaultValues.put(REMINDER_FLAGS.name, 0);
+        defaultValues.put(REMINDER_LAST.name, 0);
+        defaultValues.put(REMINDER_SNOOZE.name, 0);
         defaultValues.put(ESTIMATED_SECONDS.name, 0);
         defaultValues.put(ELAPSED_SECONDS.name, 0);
         defaultValues.put(POSTPONE_COUNT.name, 0);
