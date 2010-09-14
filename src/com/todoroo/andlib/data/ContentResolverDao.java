@@ -4,7 +4,10 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 
+import com.todoroo.andlib.service.Autowired;
+import com.todoroo.andlib.service.DependencyInjectionService;
 import com.todoroo.andlib.sql.Criterion;
 import com.todoroo.andlib.sql.Query;
 
@@ -28,8 +31,14 @@ public class ContentResolverDao<TYPE extends AbstractModel> {
     /** content resolver */
     private final ContentResolver cr;
 
+    @Autowired
+    protected Boolean debug;
+
     public ContentResolverDao(Class<TYPE> modelClass, Context context, Uri baseUri) {
+        DependencyInjectionService.getInstance().inject(this);
         this.modelClass = modelClass;
+        if(debug == null)
+            debug = false;
         this.baseUri = baseUri;
 
         cr = context.getContentResolver();
@@ -68,6 +77,8 @@ public class ContentResolverDao<TYPE extends AbstractModel> {
      * @return
      */
     public TodorooCursor<TYPE> query(Query query) {
+        if(debug)
+            Log.i("SQL-" + modelClass.getSimpleName(), query.toString()); //$NON-NLS-1$
         Cursor cursor = query.queryContentResolver(cr, baseUri);
         return new TodorooCursor<TYPE>(cursor, query.getFields());
     }
