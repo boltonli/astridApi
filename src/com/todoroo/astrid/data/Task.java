@@ -85,6 +85,10 @@ public final class Task extends AbstractModel {
     public static final StringProperty DETAILS = new StringProperty(
             TABLE, "details");
 
+    /** Date details were last updated */
+    public static final LongProperty DETAILS_DATE = new LongProperty(
+            TABLE, "detailsDate");
+
     // --- for migration purposes from astrid 2 (eventually we may want to
     //     move these into the metadata table and treat them as plug-ins
 
@@ -197,6 +201,7 @@ public final class Task extends AbstractModel {
         defaultValues.put(FLAGS.name, 0);
         defaultValues.put(TIMER_START.name, 0);
         defaultValues.put(DETAILS.name, (String)null);
+        defaultValues.put(DETAILS_DATE.name, 0);
     }
 
     @Override
