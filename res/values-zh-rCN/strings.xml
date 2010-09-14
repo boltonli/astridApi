@@ -115,12 +115,12 @@
   <string name="SyP_progress_toast">Synchronizing...</string>
   
   <!-- Sync Label: used in menu to denote synchronization -->
-  <string name="SyP_label">Synchronization</string>  
+  <string name="SyP_label">同步</string>  
 
   <!-- ================================================== SyncPreferences == -->
   
   <!-- Status Group Label -->    
-  <string name="sync_SPr_group_status">Status</string>
+  <string name="sync_SPr_group_status">状态</string>
   
   <!-- Sync Status: log in -->    
   <string name="sync_status_loggedout">Not Logged In!</string>

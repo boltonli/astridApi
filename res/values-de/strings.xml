@@ -83,7 +83,7 @@
   <string name="DLG_information_title">Information</string>
   
   <!-- error dialog title -->
-  <string name="DLG_error_title">Error!</string>
+  <string name="DLG_error_title">Fehler!</string>
   
   <!-- general dialog yes-->
   <string name="DLG_yes">Ja</string>
@@ -98,10 +98,10 @@
   <string name="DLG_done">Erledigt</string>
   
   <!-- error dialog (%s => error message)-->
-  <string name="DLG_error">Oops, looks like an error occurred! Here\'s what happened:\n\n%s</string>
+  <string name="DLG_error">Ups, sieht aus, als ob ein Fehler passiert ist! Hier, was passiert ist:\n\n%s</string>
   
   <!-- error dialog (no message indicated)-->
-  <string name="DLG_error_generic">Oops, looks like an error occurred!</string>
+  <string name="DLG_error_generic">Ups, sieht aus, als ob ein Fehler passiert ist!</string>
   
   <!-- Progress dialog shown when doing something slow -->
   <string name="DLG_wait">Bitte warten...</string>
@@ -115,7 +115,7 @@
   <string name="SyP_progress_toast">Synchronisiere…</string>
   
   <!-- Sync Label: used in menu to denote synchronization -->
-  <string name="SyP_label">Synchronization</string>  
+  <string name="SyP_label">Abgleich</string>  
 
   <!-- ================================================== SyncPreferences == -->
   
@@ -123,7 +123,7 @@
   <string name="sync_SPr_group_status">Status</string>
   
   <!-- Sync Status: log in -->    
-  <string name="sync_status_loggedout">Bitte loggen Sie sich ein!</string>
+  <string name="sync_status_loggedout">Nicht angemeldet!</string>
   <!-- Status: ongoing -->    
   <string name="sync_status_ongoing">Synchronisierung läuft...</string>
   <!-- Sync Status: success status (%s -> last sync date). Keep it short!-->    
@@ -163,7 +163,7 @@
   <!-- Sync: Clear Data Title -->
   <string name="sync_SPr_forget">Abmelden</string>
   <!-- Sync: Clear Data Description -->
-  <string name="sync_SPr_forget_description">Alle Daten der Synchronisierung löschen</string>
+  <string name="sync_SPr_forget_description">Alle Synchronisationsdaten löschen</string>
 
   <!-- confirmation dialog for sync log out -->
   <string name="sync_forget_confirm">Ausloggen / synchronisierte Daten löschen?</string>

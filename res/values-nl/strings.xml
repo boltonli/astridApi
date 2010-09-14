@@ -6,21 +6,21 @@
   
   <plurals name="DUt_years">
     <!-- plurals: years -->
-    <item quantity="one">1 Year</item>
+    <item quantity="one">1 jaar</item>
     <!-- plurals: years -->
-    <item quantity="other">%d Years</item>
+    <item quantity="other">%d jaren</item>
   </plurals>
   <plurals name="DUt_months">
     <!-- plurals: months -->
-    <item quantity="one">1 Month</item>
+    <item quantity="one">1 maand</item>
     <!-- plurals: months -->
-    <item quantity="other">%d Months</item>
+    <item quantity="other">%d maanden</item>
   </plurals>
   <plurals name="DUt_weeks">
     <!-- plurals: days -->
-    <item quantity="one">1 Week</item>
+    <item quantity="one">1 week</item>
     <!-- plurals: days -->
-    <item quantity="other">%d Weeks</item>
+    <item quantity="other">%d weken</item>
   </plurals>
   <plurals name="DUt_days">
     <!-- plurals: days -->
@@ -77,7 +77,7 @@
   <string name="DLG_confirm_title">Confirm?</string>
   
   <!-- question dialog title -->
-  <string name="DLG_question_title">Question:</string>
+  <string name="DLG_question_title">Vraag:</string>
   
   <!-- information dialog title -->
   <string name="DLG_information_title">Informatie</string>
@@ -86,13 +86,13 @@
   <string name="DLG_error_title">Error!</string>
   
   <!-- general dialog yes-->
-  <string name="DLG_yes">Yes</string>
+  <string name="DLG_yes">Ja</string>
   
   <!-- general dialog no-->
-  <string name="DLG_no">No</string>
+  <string name="DLG_no">Nee</string>
   
   <!-- general dialog close-->
-  <string name="DLG_close">Close</string>
+  <string name="DLG_close">Sluiten</string>
   
   <!-- general dialog done -->
   <string name="DLG_done">Voltooid</string>
@@ -104,7 +104,7 @@
   <string name="DLG_error_generic">Oops, looks like an error occurred!</string>
   
   <!-- Progress dialog shown when doing something slow -->
-  <string name="DLG_wait">Please wait...</string>
+  <string name="DLG_wait">Even geduld alstublieft...</string>
 
  <!-- ====================================================== SyncProvider == -->
           
@@ -112,10 +112,10 @@
   <string name="SyP_progress">Synchronizing your tasks...</string>
   
   <!-- Sync Notification: toast when sync activated from activity -->
-  <string name="SyP_progress_toast">Synchronizing...</string>
+  <string name="SyP_progress_toast">Bezig met synchroniseren...</string>
   
   <!-- Sync Label: used in menu to denote synchronization -->
-  <string name="SyP_label">Synchronization</string>  
+  <string name="SyP_label">Synchronisatie</string>  
 
   <!-- ================================================== SyncPreferences == -->
   
@@ -171,15 +171,15 @@
   <string-array name="sync_SPr_interval_entries">
       <!-- sync_SPr_interval_entries: Synchronization Intervals -->
       <item>uit</item>
-      <item>every fifteen minutes</item>
-      <item>every thirty minutes</item>
-      <item>every hour</item>
-      <item>every three hours</item>
-      <item>every six hours</item>
-      <item>every twelve hours</item>
-      <item>every day</item>
-      <item>every three days</item>
-      <item>every week</item>
+      <item>elke 15 minuten</item>
+      <item>elke 30 minuten</item>
+      <item>elk uur</item>
+      <item>elke 3 uur</item>
+      <item>elke 6 uur</item>
+      <item>elke 12 uur</item>
+      <item>elke dag</item>
+      <item>elke 3 dagen</item>
+      <item>elke week</item>
   </string-array>    
     
 

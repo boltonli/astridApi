@@ -83,7 +83,7 @@
   <string name="DLG_information_title">Information</string>
   
   <!-- error dialog title -->
-  <string name="DLG_error_title">Error!</string>
+  <string name="DLG_error_title">Erreur !</string>
   
   <!-- general dialog yes-->
   <string name="DLG_yes">Oui</string>
@@ -115,7 +115,7 @@
   <string name="SyP_progress_toast">Synchronisation...</string>
   
   <!-- Sync Label: used in menu to denote synchronization -->
-  <string name="SyP_label">Synchronization</string>  
+  <string name="SyP_label">Synchronisation</string>  
 
   <!-- ================================================== SyncPreferences == -->
   
@@ -123,15 +123,15 @@
   <string name="sync_SPr_group_status">Statut</string>
   
   <!-- Sync Status: log in -->    
-  <string name="sync_status_loggedout">Veuillez vous connecter!</string>
+  <string name="sync_status_loggedout">Not Logged In!</string>
   <!-- Status: ongoing -->    
   <string name="sync_status_ongoing">Synchronisation en cours...</string>
   <!-- Sync Status: success status (%s -> last sync date). Keep it short!-->    
-  <string name="sync_status_success">Dernière synchro.: %s</string>
+  <string name="sync_status_success">Dernière synchro. : %s</string>
   <!-- Sync Status: error status (%s -> last attempted sync date) -->    
   <string name="sync_status_failed">Échec sur : %s</string>
   <!-- Sync Status: error subtitle (%s -> last successful sync date) -->    
-  <string name="sync_status_failed_subtitle">Dernière synchro. réussie: %s</string>
+  <string name="sync_status_failed_subtitle">Dernière synchro. réussie : %s</string>
   <!-- Sync Status: never sync'd -->    
   <string name="sync_status_never">Jamais synchronisé !</string>
 
@@ -163,7 +163,7 @@
   <!-- Sync: Clear Data Title -->
   <string name="sync_SPr_forget">Se déconnecter</string>
   <!-- Sync: Clear Data Description -->
-  <string name="sync_SPr_forget_description">Purger toutes les données de synchronisation</string>
+  <string name="sync_SPr_forget_description">Clears all synchronization data</string>
 
   <!-- confirmation dialog for sync log out -->
   <string name="sync_forget_confirm">Se déconnecter/purger les données de synchronisation ?</string>

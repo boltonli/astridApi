@@ -83,7 +83,7 @@
   <string name="DLG_information_title">Informasjon</string>
   
   <!-- error dialog title -->
-  <string name="DLG_error_title">Error!</string>
+  <string name="DLG_error_title">Feil!</string>
   
   <!-- general dialog yes-->
   <string name="DLG_yes">Ja</string>
@@ -98,10 +98,10 @@
   <string name="DLG_done">Utført</string>
   
   <!-- error dialog (%s => error message)-->
-  <string name="DLG_error">Oops, looks like an error occurred! Here\'s what happened:\n\n%s</string>
+  <string name="DLG_error">Oi sann! Det ser ut for at en feil oppstod. Her er hva som skjedde:\n\n%s</string>
   
   <!-- error dialog (no message indicated)-->
-  <string name="DLG_error_generic">Oops, looks like an error occurred!</string>
+  <string name="DLG_error_generic">Oi sann! Det ser ut for at en feil oppstod</string>
   
   <!-- Progress dialog shown when doing something slow -->
   <string name="DLG_wait">Vennligst vent...</string>
@@ -115,7 +115,7 @@
   <string name="SyP_progress_toast">Synkroniserer...</string>
   
   <!-- Sync Label: used in menu to denote synchronization -->
-  <string name="SyP_label">Synchronization</string>  
+  <string name="SyP_label">Synkronisering</string>  
 
   <!-- ================================================== SyncPreferences == -->
   
@@ -123,7 +123,7 @@
   <string name="sync_SPr_group_status">Status</string>
   
   <!-- Sync Status: log in -->    
-  <string name="sync_status_loggedout">Vennligst logg inn!</string>
+  <string name="sync_status_loggedout">Not Logged In!</string>
   <!-- Status: ongoing -->    
   <string name="sync_status_ongoing">Synkronisering pågår...</string>
   <!-- Sync Status: success status (%s -> last sync date). Keep it short!-->    
@@ -163,7 +163,7 @@
   <!-- Sync: Clear Data Title -->
   <string name="sync_SPr_forget">Logg av</string>
   <!-- Sync: Clear Data Description -->
-  <string name="sync_SPr_forget_description">Slett alle synkroniseringsdata</string>
+  <string name="sync_SPr_forget_description">Clears all synchronization data</string>
 
   <!-- confirmation dialog for sync log out -->
   <string name="sync_forget_confirm">Logge ut / slette synkroniserings data?</string>

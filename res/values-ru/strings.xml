@@ -115,7 +115,7 @@
   <string name="SyP_progress_toast">Синхронизация…</string>
   
   <!-- Sync Label: used in menu to denote synchronization -->
-  <string name="SyP_label">Synchronization</string>  
+  <string name="SyP_label">Синхронизация</string>  
 
   <!-- ================================================== SyncPreferences == -->
   

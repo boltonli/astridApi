@@ -115,7 +115,7 @@
   <string name="SyP_progress_toast">Sychronizuji...</string>
   
   <!-- Sync Label: used in menu to denote synchronization -->
-  <string name="SyP_label">Synchronization</string>  
+  <string name="SyP_label">Synchronizace</string>  
 
   <!-- ================================================== SyncPreferences == -->
   
@@ -123,7 +123,7 @@
   <string name="sync_SPr_group_status">Stav</string>
   
   <!-- Sync Status: log in -->    
-  <string name="sync_status_loggedout">Prosím přihlaš se!</string>
+  <string name="sync_status_loggedout">Not Logged In!</string>
   <!-- Status: ongoing -->    
   <string name="sync_status_ongoing">Probíhá synchronizace...</string>
   <!-- Sync Status: success status (%s -> last sync date). Keep it short!-->    
@@ -163,7 +163,7 @@
   <!-- Sync: Clear Data Title -->
   <string name="sync_SPr_forget">Odhlásit se</string>
   <!-- Sync: Clear Data Description -->
-  <string name="sync_SPr_forget_description">Vymazat všechny synchronizační data</string>
+  <string name="sync_SPr_forget_description">Clears all synchronization data</string>
 
   <!-- confirmation dialog for sync log out -->
   <string name="sync_forget_confirm">Odhlásit se / vymazat synchronizační data?</string>
