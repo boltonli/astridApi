@@ -25,6 +25,8 @@ public final class ContextManager {
      * @param context
      */
     public static void setContext(Context context) {
+        if(context == null)
+            return;
         ContextManager.context = context;
     }
 
