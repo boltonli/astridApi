@@ -6,21 +6,21 @@
   
   <plurals name="DUt_years">
     <!-- plurals: years -->
-    <item quantity="one">1 Year</item>
+    <item quantity="one">1 年</item>
     <!-- plurals: years -->
-    <item quantity="other">%d Years</item>
+    <item quantity="other">%d 年</item>
   </plurals>
   <plurals name="DUt_months">
     <!-- plurals: months -->
-    <item quantity="one">1 Month</item>
+    <item quantity="one">1 个月</item>
     <!-- plurals: months -->
-    <item quantity="other">%d Months</item>
+    <item quantity="other">%d 月</item>
   </plurals>
   <plurals name="DUt_weeks">
     <!-- plurals: days -->
-    <item quantity="one">1 Week</item>
+    <item quantity="one">1 周</item>
     <!-- plurals: days -->
-    <item quantity="other">%d Weeks</item>
+    <item quantity="other">%d 周</item>
   </plurals>
   <plurals name="DUt_days">
     <!-- plurals: days -->
@@ -66,33 +66,33 @@
   </plurals>
   <plurals name="Ntasks">
     <!-- plurals: tasks -->
-    <item quantity="one">1 task</item>
+    <item quantity="one">1 个工作</item>
     <!-- plurals: tasks -->
-    <item quantity="other">%d tasks</item>
+    <item quantity="other">%d 个工作</item>
   </plurals>
   
   <!-- ================================================== Generic Dialogs == -->
   
   <!-- confirmation dialog title -->
-  <string name="DLG_confirm_title">Confirm?</string>
+  <string name="DLG_confirm_title">确认?</string>
   
   <!-- question dialog title -->
-  <string name="DLG_question_title">Question:</string>
+  <string name="DLG_question_title">问题：</string>
   
   <!-- information dialog title -->
-  <string name="DLG_information_title">信息</string>
+  <string name="DLG_information_title">资讯</string>
   
   <!-- error dialog title -->
   <string name="DLG_error_title">Error!</string>
   
   <!-- general dialog yes-->
-  <string name="DLG_yes">Yes</string>
+  <string name="DLG_yes">确定</string>
   
   <!-- general dialog no-->
-  <string name="DLG_no">No</string>
+  <string name="DLG_no">取消</string>
   
   <!-- general dialog close-->
-  <string name="DLG_close">Close</string>
+  <string name="DLG_close">关闭</string>
   
   <!-- general dialog done -->
   <string name="DLG_done">完成</string>
@@ -104,15 +104,15 @@
   <string name="DLG_error_generic">Oops, looks like an error occurred!</string>
   
   <!-- Progress dialog shown when doing something slow -->
-  <string name="DLG_wait">Please wait...</string>
+  <string name="DLG_wait">请稍候...</string>
 
  <!-- ====================================================== SyncProvider == -->
           
   <!-- Sync Notification: message when sync service active -->
-  <string name="SyP_progress">Synchronizing your tasks...</string>
+  <string name="SyP_progress">同步工作中...</string>
   
   <!-- Sync Notification: toast when sync activated from activity -->
-  <string name="SyP_progress_toast">Synchronizing...</string>
+  <string name="SyP_progress_toast">正在同步中...</string>
   
   <!-- Sync Label: used in menu to denote synchronization -->
   <string name="SyP_label">同步</string>  
@@ -123,63 +123,63 @@
   <string name="sync_SPr_group_status">状态</string>
   
   <!-- Sync Status: log in -->    
-  <string name="sync_status_loggedout">Not Logged In!</string>
+  <string name="sync_status_loggedout">未登入!</string>
   <!-- Status: ongoing -->    
-  <string name="sync_status_ongoing">Sync Ongoing...</string>
+  <string name="sync_status_ongoing">同步中...</string>
   <!-- Sync Status: success status (%s -> last sync date). Keep it short!-->    
-  <string name="sync_status_success">Last Sync: %s</string>
+  <string name="sync_status_success">上次同步: %s</string>
   <!-- Sync Status: error status (%s -> last attempted sync date) -->    
-  <string name="sync_status_failed">Failed On: %s</string>
+  <string name="sync_status_failed">失败: %s</string>
   <!-- Sync Status: error subtitle (%s -> last successful sync date) -->    
-  <string name="sync_status_failed_subtitle">Last Successful Sync: %s</string>
+  <string name="sync_status_failed_subtitle">上次成功同步: %s</string>
   <!-- Sync Status: never sync'd -->    
-  <string name="sync_status_never">Never Synchronized!</string>
+  <string name="sync_status_never">未同步过!</string>
 
   <!-- Options Group Label -->    
   <string name="sync_SPr_group_options">选项</string>
 
   <!-- Preference: Synchronization Interval Title -->    
-  <string name="sync_SPr_interval_title">Background Sync</string>
+  <string name="sync_SPr_interval_title">背景同步</string>
   <!-- Preference: Synchronization Interval Description (when disabled) -->
-  <string name="sync_SPr_interval_desc_disabled">Background synchronization is disabled</string>    
+  <string name="sync_SPr_interval_desc_disabled">背景同步关闭</string>    
   <!-- Preference: Synchronization Interval Description (%s => setting) -->
-  <string name="sync_SPr_interval_desc">Currently set to: %s</string>
+  <string name="sync_SPr_interval_desc">目前同步设定: %s</string>
   
   <!-- Preference: Background Wifi Title -->  
-  <string name="sync_SPr_bgwifi_title">Wifi Only Setting</string>    
+  <string name="sync_SPr_bgwifi_title">Wifi 才可使用之设定</string>    
   <!-- Preference: Background Wifi Description (enabled) -->
-  <string name="sync_SPr_bgwifi_desc_enabled">Background synchronization only happens when on Wifi</string>    
+  <string name="sync_SPr_bgwifi_desc_enabled">使用Wifi才启动背景同步</string>    
   <!-- Preference: Background Wifi Description (disabled) -->
-  <string name="sync_SPr_bgwifi_desc_disabled">Background synchronization will always occur</string>
+  <string name="sync_SPr_bgwifi_desc_disabled">总是使用背景同步</string>
   
   <!-- Actions Group Label  -->
-  <string name="sync_SPr_group_actions">操作</string>
+  <string name="sync_SPr_group_actions">动作</string>
 
   <!-- Synchronize Now Button -->    
   <string name="sync_SPr_sync">现在同步!</string>
   <!-- Synchronize Now Button if not logged in-->    
-  <string name="sync_SPr_sync_log_in">Log In &amp; Synchronize!</string>
+  <string name="sync_SPr_sync_log_in">登入并同步!</string>
   
   <!-- Sync: Clear Data Title -->
-  <string name="sync_SPr_forget">Log Out</string>
+  <string name="sync_SPr_forget">登出</string>
   <!-- Sync: Clear Data Description -->
-  <string name="sync_SPr_forget_description">Clears all synchronization data</string>
+  <string name="sync_SPr_forget_description">清除所有同步资料</string>
 
   <!-- confirmation dialog for sync log out -->
-  <string name="sync_forget_confirm">Log out / clear synchronization data?</string>
+  <string name="sync_forget_confirm">登出 / 清除同步资料?</string>
   
   <string-array name="sync_SPr_interval_entries">
       <!-- sync_SPr_interval_entries: Synchronization Intervals -->
-      <item>disable</item>
-      <item>every fifteen minutes</item>
-      <item>every thirty minutes</item>
-      <item>every hour</item>
-      <item>every three hours</item>
-      <item>every six hours</item>
-      <item>every twelve hours</item>
-      <item>every day</item>
-      <item>every three days</item>
-      <item>every week</item>
+      <item>停用</item>
+      <item>每15分</item>
+      <item>每30分</item>
+      <item>每小时</item>
+      <item>每3小时</item>
+      <item>每6小时</item>
+      <item>每12小时</item>
+      <item>每天</item>
+      <item>每3天</item>
+      <item>每周</item>
   </string-array>    
     
 
