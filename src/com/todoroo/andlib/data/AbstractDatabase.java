@@ -9,12 +9,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.util.Log;
 
 import com.todoroo.andlib.data.Property.PropertyVisitor;
+import com.todoroo.andlib.service.Autowired;
 import com.todoroo.andlib.service.ContextManager;
+import com.todoroo.andlib.service.DependencyInjectionService;
+import com.todoroo.andlib.service.ExceptionService;
 import com.todoroo.andlib.utility.AndroidUtilities;
 
 /**
@@ -81,6 +84,13 @@ abstract public class AbstractDatabase {
 
 	// --- internal implementation
 
+    @Autowired
+    private ExceptionService exceptionService;
+
+    public AbstractDatabase() {
+        DependencyInjectionService.getInstance().inject(this);
+    }
+
     /**
      * Return the name of the table containing these models
      * @param modelType
@@ -125,6 +135,8 @@ abstract public class AbstractDatabase {
                 // provide read-only database
                 openForReading();
             } catch (Exception readException) {
+                exceptionService.reportError("database-open-" + getName(), original);
+
                 // throw original write exception
                 throw original;
             }
@@ -257,13 +269,18 @@ abstract public class AbstractDatabase {
                     oldVersion, newVersion));
 
             database = db;
-            if(!AbstractDatabase.this.onUpgrade(oldVersion, newVersion)) {
-                // We don't know how to handle this case because someone forgot to
-                // implement the upgrade. We can't drop tables, we can only
-                // throw a nasty exception at this time
+            try {
+                if(!AbstractDatabase.this.onUpgrade(oldVersion, newVersion)) {
+                    // We don't know how to handle this case because someone forgot to
+                    // implement the upgrade. We can't drop tables, we can only
+                    // throw a nasty exception at this time
 
-                throw new IllegalStateException("Missing database migration " +
-                        "from " + oldVersion + " to " + newVersion);
+                    throw new IllegalStateException("Missing database migration " +
+                            "from " + oldVersion + " to " + newVersion);
+                }
+            } catch (Exception e) {
+                exceptionService.reportError(String.format("database-upgrade-%s-%d-%d",
+                        getName(), oldVersion, newVersion), e);
             }
         }
     }
