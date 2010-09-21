@@ -31,4 +31,10 @@ public class SyncContainer {
         return null;
     }
 
+    /**
+     * Method called when sync container is about to be saved into the database.
+     */
+    public void prepareForSaving() {
+        // override me necessary
+    }
 }
