@@ -19,8 +19,6 @@ import java.util.LinkedList;
  */
 public class DependencyInjectionService {
 
-    private static final String QUALIFIED_PACKAGE = "com.t"; //$NON-NLS-1$
-
     /**
      * Dependency injectors. Use getters and setters to modify this list
      */
@@ -42,7 +40,7 @@ public class DependencyInjectionService {
         Class<?> cls = caller.getClass();
         while(cls != null) {
             String packageName = cls.getPackage().getName();
-            if(!packageName.startsWith(QUALIFIED_PACKAGE))
+            if(!isQualifiedPackage(packageName))
                 break;
 
             for(Field field : cls.getDeclaredFields()) {
@@ -65,6 +63,17 @@ public class DependencyInjectionService {
 
             cls = cls.getSuperclass();
         }
+    }
+
+    @SuppressWarnings("nls")
+    private boolean isQualifiedPackage(String packageName) {
+        if(packageName.startsWith("com.todoroo"))
+            return true;
+        if(packageName.startsWith("com.timsu"))
+            return true;
+        if(packageName.startsWith("org.weloveastrid"))
+            return true;
+        return false;
     }
 
     /**
