@@ -17,6 +17,8 @@ Getting Started With Development
 
 2. Use **git** to clone this repository (see Github's instructions if you need help).
 
+2b. mkdir libs (in case your Android SDK is [not up to date](http://comments.gmane.org/gmane.comp.handhelds.android.devel/101722))
+
 3. Open up **eclipse** and import the *astridApi* project.
 
 4. If you are creating a new add-on for Astrid, create a new project in **eclipse**
