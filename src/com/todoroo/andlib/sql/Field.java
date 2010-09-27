@@ -23,6 +23,19 @@ public class Field extends DBObject<Field> {
         return UnaryCriterion.eq(this, value);
     }
 
+    /**
+     * Adds the criterion that the field must be equal to the given string, ignoring case.
+     *
+     * Thanks to a sqlite bug, this will only work for ASCII values.
+     *
+     * @param value string which field must equal
+     * @return the criterion
+     */
+    public Criterion eqCaseInsensitive(String value) {
+        String escaped = value.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_");
+        return UnaryCriterion.like(this, escaped, "\\");
+    }
+
     public Criterion neq(Object value) {
         if(value == null)
             return UnaryCriterion.isNotNull(this);
@@ -68,7 +81,6 @@ public class Field extends DBObject<Field> {
     public Criterion like(String value, String escape) {
         return UnaryCriterion.like(this, value, escape);
     }
-
 
     public <T> Criterion in(final T... value) {
         final Field field = this;
