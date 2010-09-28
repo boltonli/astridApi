@@ -9,6 +9,7 @@ import static com.todoroo.andlib.sql.SqlConstants.LIMIT;
 import static com.todoroo.andlib.sql.SqlConstants.ORDER_BY;
 import static com.todoroo.andlib.sql.SqlConstants.RIGHT_PARENTHESIS;
 import static com.todoroo.andlib.sql.SqlConstants.SELECT;
+import static com.todoroo.andlib.sql.SqlConstants.DISTINCT;
 import static com.todoroo.andlib.sql.SqlConstants.SPACE;
 import static com.todoroo.andlib.sql.SqlConstants.WHERE;
 import static com.todoroo.andlib.sql.SqlTable.table;
@@ -34,6 +35,7 @@ public final class Query {
     private final ArrayList<Order> orders = new ArrayList<Order>();
     private final ArrayList<Criterion> havings = new ArrayList<Criterion>();
     private int limits = -1;
+    private boolean distinct = false;
 
     private Query(Field... fields) {
         this.fields.addAll(asList(fields));
@@ -41,6 +43,12 @@ public final class Query {
 
     public static Query select(Field... fields) {
         return new Query(fields);
+    }
+
+    public static Query selectDistinct(Field... fields) {
+        Query query = new Query(fields);
+        query.distinct = true;
+        return query;
     }
 
     public Query from(SqlTable fromTable) {
@@ -166,6 +174,8 @@ public final class Query {
 
     private void visitSelectClause(StringBuilder sql) {
         sql.append(SELECT).append(SPACE);
+        if(distinct)
+            sql.append(DISTINCT).append(SPACE);
         if (fields.isEmpty()) {
             sql.append(ALL).append(SPACE);
             return;

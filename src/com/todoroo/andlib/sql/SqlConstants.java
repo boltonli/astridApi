@@ -3,6 +3,7 @@ package com.todoroo.andlib.sql;
 @SuppressWarnings("nls")
 public final class SqlConstants {
     static final String SELECT = "SELECT";
+    static final String DISTINCT = "DISTINCT";
     static final String SPACE = " ";
     static final String AS = "AS";
     static final String COMMA = ",";
