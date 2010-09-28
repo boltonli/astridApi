@@ -151,12 +151,29 @@ public class DatabaseDao<TYPE extends AbstractModel> {
 
     /**
      * Delete all matching a clause
-     * @param database
-     * @param where
+     * @param where predicate for deletion
      * @return # of deleted items
      */
     public int deleteWhere(Criterion where) {
         return database.delete(table.name,
+                where.toString(), null);
+    }
+
+    /**
+     * Update all matching a clause to have the values set on template object.
+     * <p>
+     * Example (updates "joe" => "bob" in metadata value1):
+     * {code}
+     * Metadata item = new Metadata();
+     * item.setValue(Metadata.VALUE1, "bob");
+     * update(item, Metadata.VALUE1.eq("joe"));
+     * {code}
+     * @param where sql criteria
+     * @param template set fields on this object in order to set them in the db.
+     * @return # of updated items
+     */
+    public int update(Criterion where, TYPE template) {
+        return database.update(table.name, template.getSetValues(),
                 where.toString(), null);
     }
 
