@@ -14,9 +14,9 @@ import com.todoroo.andlib.sql.Order;
 import com.todoroo.andlib.sql.Query;
 import com.todoroo.astrid.data.Metadata;
 import com.todoroo.astrid.data.MetadataApiDao;
+import com.todoroo.astrid.data.MetadataApiDao.MetadataCriteria;
 import com.todoroo.astrid.data.Task;
 import com.todoroo.astrid.data.TaskApiDao;
-import com.todoroo.astrid.data.MetadataApiDao.MetadataCriteria;
 import com.todoroo.astrid.data.TaskApiDao.TaskCriteria;
 
 abstract public class SyncMetadataService<TYPE extends SyncContainer> {
@@ -46,6 +46,9 @@ abstract public class SyncMetadataService<TYPE extends SyncContainer> {
     /** @return criterion for finding local matches of sync container in task database */
     abstract public Criterion getLocalMatchCriteria(TYPE remoteTask);
 
+    /** @return criterion for matching metadata that indicate remote task exists */
+    abstract public Criterion getMetadataWithRemoteId();
+
     // --- implementation
 
     public SyncMetadataService(Context context) {
@@ -54,20 +57,21 @@ abstract public class SyncMetadataService<TYPE extends SyncContainer> {
     }
 
     /**
-     * Clears RTM metadata information. Used when user logs out of RTM
+     * Clears metadata information. Used when user logs out of sync provider
      */
     public void clearMetadata() {
         metadataDao.deleteWhere(Metadata.KEY.eq(getMetadataKey()));
     }
 
     /**
-     * Gets milk task metadata for joining
+     * Gets cursor across all task metadata for joining
      *
      * @return cursor
      */
-    private TodorooCursor<Metadata> getMetadata() {
+    private TodorooCursor<Metadata> getRemoteTaskMetadata() {
         return metadataDao.query(Query.select(Metadata.TASK).where(
-                MetadataCriteria.withKey(getMetadataKey())).orderBy(Order.asc(Metadata.TASK)));
+                Criterion.and(MetadataCriteria.withKey(getMetadataKey()),
+                getMetadataWithRemoteId())).orderBy(Order.asc(Metadata.TASK)));
     }
 
     /**
@@ -85,7 +89,7 @@ abstract public class SyncMetadataService<TYPE extends SyncContainer> {
                     Task.CREATION_DATE.gt(lastSyncDate))).orderBy(Order.asc(Task.ID)));
 
         try {
-            TodorooCursor<Metadata> metadata = getMetadata();
+            TodorooCursor<Metadata> metadata = getRemoteTaskMetadata();
             try {
                 ArrayList<Long> matchingRows = new ArrayList<Long>();
                 joinRows(tasks, metadata, matchingRows, false);
@@ -114,7 +118,7 @@ abstract public class SyncMetadataService<TYPE extends SyncContainer> {
             tasks = taskDao.query(Query.select(Task.ID).where(Task.MODIFICATION_DATE.
                     gt(lastSyncDate)).orderBy(Order.asc(Task.ID)));
         try {
-            TodorooCursor<Metadata> metadata = getMetadata();
+            TodorooCursor<Metadata> metadata = getRemoteTaskMetadata();
             try {
 
                 ArrayList<Long> matchingRows = new ArrayList<Long>();
