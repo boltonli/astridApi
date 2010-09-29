@@ -31,6 +31,7 @@ public class Field extends DBObject<Field> {
      * @param value string which field must equal
      * @return the criterion
      */
+    @SuppressWarnings("nls")
     public Criterion eqCaseInsensitive(String value) {
         String escaped = value.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_");
         return UnaryCriterion.like(this, escaped, "\\");
