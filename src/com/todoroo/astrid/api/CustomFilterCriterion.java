@@ -6,6 +6,7 @@ package com.todoroo.astrid.api;
 import android.content.ContentValues;
 import android.graphics.Bitmap;
 import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * CustomFilterCriteria allow users to build a custom filter by chaining
@@ -14,7 +15,7 @@ import android.os.Parcel;
  * @author Tim Su <tim@todoroo.com>
  *
  */
-abstract public class CustomFilterCriterion {
+abstract public class CustomFilterCriterion implements Parcelable {
 
     /**
      * Criteria Identifier. This identifier allows saved filters to be reloaded.
