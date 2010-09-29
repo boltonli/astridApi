@@ -70,8 +70,9 @@ abstract public class SyncBackgroundService extends Service {
             return;
 
         getSyncProvider().synchronize(context);
-    }
 
+        stopSelf();
+    }
 
     @Override
     public IBinder onBind(Intent intent) {
