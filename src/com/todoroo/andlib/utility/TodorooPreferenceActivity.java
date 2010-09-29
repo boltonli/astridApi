@@ -23,7 +23,7 @@ import com.todoroo.andlib.service.ContextManager;
  * @author Tim Su <tim@todoroo.com>
  *
  */
-abstract public class TodorooPreferences extends PreferenceActivity {
+abstract public class TodorooPreferenceActivity extends PreferenceActivity {
 
     // --- abstract methods
 

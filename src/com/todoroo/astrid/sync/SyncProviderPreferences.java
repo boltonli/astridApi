@@ -15,7 +15,7 @@ import android.view.ViewGroup.OnHierarchyChangeListener;
 import com.todoroo.andlib.utility.AndroidUtilities;
 import com.todoroo.andlib.utility.DateUtilities;
 import com.todoroo.andlib.utility.DialogUtilities;
-import com.todoroo.andlib.utility.TodorooPreferences;
+import com.todoroo.andlib.utility.TodorooPreferenceActivity;
 import com.todoroo.astrid.api.R;
 
 /**
@@ -25,7 +25,7 @@ import com.todoroo.astrid.api.R;
  * @author Tim Su <tim@todoroo.com
  *
  */
-abstract public class SyncProviderPreferences extends TodorooPreferences {
+abstract public class SyncProviderPreferences extends TodorooPreferenceActivity {
 
     // --- interface
 
