@@ -31,11 +31,12 @@ public class TextInputCriterion extends CustomFilterCriterion implements Parcela
     /**
      * Create a new CustomFilterCriteria object
      *
+     * @param identifier
      * @param title
      * @param sql
      * @param valuesForNewTasks
-     * @param entryTitles
-     * @param entryValues
+     * @param prompt
+     * @param hint
      * @param icon
      * @param name
      */

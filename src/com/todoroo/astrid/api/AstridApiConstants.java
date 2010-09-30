@@ -97,10 +97,25 @@ public class AstridApiConstants {
 
     /**
      * Action name for broadcast intent sending filters back to Astrid
-     * <li> EXTRAS_ADDON your add-on identifier
-     * <li> EXTRAS_RESPONSE an array of {@link FilterListItem}s
+     * <li> EXTRAS_ADDON your add-on identifier </li>
+     * <li> EXTRAS_RESPONSE an array of {@link FilterListItem}s </li>
      */
     public static final String BROADCAST_SEND_FILTERS = PACKAGE + ".SEND_FILTERS";
+
+    // -- Custom criteria API
+
+    /**
+     * Action name for a broadcast intent requesting custom filter criteria (e.g. "Due by, Tagged, Tag contains", etc.)
+     */
+    public static final String BROADCAST_REQUEST_CUSTOM_FILTER_CRITERIA = PACKAGE + ".REQUEST_CUSTOM_FILTER_CRITERIA";
+
+
+    /**
+     * Action name for broadcast intent sending custom filter criteria back to Astrid
+     * <li> EXTRAS_ADDON you add-on identifier
+     * <li> EXTRAS_RESPONSE an array of {@link CustomFilterCriterion} </li>
+     */
+    public static final String BROADCAST_SEND_CUSTOM_FILTER_CRITERIA = PACKAGE + ".SEND_CUSTOM_FILTER_CRITERIA";
 
     // --- Edit Controls API
 
