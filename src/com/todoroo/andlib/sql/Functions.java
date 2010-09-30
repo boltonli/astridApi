@@ -1,6 +1,7 @@
 package com.todoroo.andlib.sql;
 
 
+
 @SuppressWarnings("nls")
 public final class Functions {
 
@@ -23,6 +24,11 @@ public final class Functions {
      */
     public static Field now() {
         return new Field("(strftime('%s','now')*1000)");
+    }
+
+    public static Field cast(Field field, String newType) {
+        return new Field("CAST(" + field.toString() + " AS " +
+                newType + ")");
     }
 
 }

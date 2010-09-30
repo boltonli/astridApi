@@ -12,6 +12,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import android.app.Activity;
@@ -27,8 +28,8 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
 import android.widget.TextView;
 
 import com.todoroo.andlib.service.ExceptionService;
@@ -358,6 +359,20 @@ public class AndroidUtilities {
                 return Long.valueOf(o2.lastModified()).compareTo(Long.valueOf(o1.lastModified()));
             }
         });
+    }
+
+    /**
+     * Search for the given value in the map, returning key if found
+     * @param map
+     * @param value
+     * @return null if not found, otherwise key
+     */
+    public static <KEY, VALUE> KEY findKeyInMap(Map<KEY, VALUE> map, VALUE value){
+        for (Entry<KEY, VALUE> entry: map.entrySet()) {
+            if(entry.getValue().equals(value))
+                return entry.getKey();
+        }
+        return null;
     }
 
     /**
