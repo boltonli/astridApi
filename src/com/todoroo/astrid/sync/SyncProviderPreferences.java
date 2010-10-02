@@ -110,7 +110,6 @@ abstract public class SyncProviderPreferences extends TodorooPreferenceActivity 
                 preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
                     public boolean onPreferenceClick(Preference p) {
                         startSync();
-                        finish();
                         return true;
                     }
                 });
@@ -150,7 +149,6 @@ abstract public class SyncProviderPreferences extends TodorooPreferenceActivity 
                 preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
                     public boolean onPreferenceClick(Preference p) {
                         startSync();
-                        finish();
                         return true;
                     }
                 });
@@ -169,7 +167,6 @@ abstract public class SyncProviderPreferences extends TodorooPreferenceActivity 
             preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference p) {
                     startSync();
-                    finish();
                     return true;
                 }
             });
