@@ -15,8 +15,8 @@ import android.app.Service;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.todoroo.andlib.data.Property.LongProperty;
 import com.todoroo.andlib.data.TodorooCursor;
+import com.todoroo.andlib.data.Property.LongProperty;
 import com.todoroo.andlib.service.NotificationManager;
 import com.todoroo.astrid.api.R;
 import com.todoroo.astrid.data.Task;
@@ -204,70 +204,17 @@ public abstract class SyncProvider<TYPE extends SyncContainer> {
         }
 
         // 1. CREATE: grab newly created tasks and create them remotely
-        length = data.localCreated.getCount();
-        for(int i = 0; i < length; i++) {
-            data.localCreated.moveToNext();
-            TYPE local = read(data.localCreated);
-            try {
-
-                String taskTitle = local.task.getValue(Task.TITLE);
-
-                /* If there exists an incoming remote task with the same name and no
-                 * mapping, we don't want to create this on the remote server,
-                 * because user could have synchronized like this before. Instead,
-                 * we create a mapping and do an update.
-                 */
-                if (remoteNewTaskNameMap.containsKey(taskTitle)) {
-                    int remoteIndex = remoteNewTaskNameMap.remove(taskTitle);
-                    TYPE remote = data.remoteUpdated.get(remoteIndex);
-
-                    transferIdentifiers(remote, local);
-                    push(local, remote);
-
-                    // re-read remote task after merge, update remote task list
-                    remote = pull(remote);
-                    remote.task.setId(local.task.getId());
-                    data.remoteUpdated.set(remoteIndex, remote);
-
-                } else {
-                    create(local);
-                }
-            } catch (Exception e) {
-                handleException("sync-local-created", e, false); //$NON-NLS-1$
-            }
-            write(local);
-        }
+        sendLocallyCreated(data, remoteNewTaskNameMap);
 
         // 2. UPDATE: for each updated local task
-        length = data.localUpdated.getCount();
-        for(int i = 0; i < length; i++) {
-            data.localUpdated.moveToNext();
-            TYPE local = read(data.localUpdated);
-            try {
-                if(local.task == null)
-                    continue;
-
-                // if there is a conflict, merge
-                int remoteIndex = matchTask((ArrayList<TYPE>)data.remoteUpdated, local);
-                if(remoteIndex != -1) {
-                    TYPE remote = data.remoteUpdated.get(remoteIndex);
-                    push(local, remote);
-
-                    // re-read remote task after merge
-                    remote = pull(remote);
-                    remote.task.setId(local.task.getId());
-                    data.remoteUpdated.set(remoteIndex, remote);
-                } else {
-                    push(local, null);
-                }
-            } catch (Exception e) {
-                handleException("sync-local-updated", e, false); //$NON-NLS-1$
-            }
-            write(local);
-        }
+        sendLocallyUpdated(data);
 
         // 3. REMOTE: load remote information
+        readRemotelyUpdated(data);
+    }
 
+    protected void readRemotelyUpdated(SyncData<TYPE> data) throws IOException {
+        int length;
         // Rearrange remoteTasks so completed tasks get synchronized first.
         // This prevents bugs where a repeated task has two copies come down
         // the wire, the new version and the completed old version. The new
@@ -313,14 +260,82 @@ public abstract class SyncProvider<TYPE extends SyncContainer> {
         }
     }
 
+    protected void sendLocallyUpdated(SyncData<TYPE> data) throws IOException {
+        int length;
+        length = data.localUpdated.getCount();
+        for(int i = 0; i < length; i++) {
+            data.localUpdated.moveToNext();
+            TYPE local = read(data.localUpdated);
+            try {
+                if(local.task == null)
+                    continue;
+
+                // if there is a conflict, merge
+                int remoteIndex = matchTask((ArrayList<TYPE>)data.remoteUpdated, local);
+                if(remoteIndex != -1) {
+                    TYPE remote = data.remoteUpdated.get(remoteIndex);
+                    push(local, remote);
+
+                    // re-read remote task after merge
+                    remote = pull(remote);
+                    remote.task.setId(local.task.getId());
+                    data.remoteUpdated.set(remoteIndex, remote);
+                } else {
+                    push(local, null);
+                }
+            } catch (Exception e) {
+                handleException("sync-local-updated", e, false); //$NON-NLS-1$
+            }
+            write(local);
+        }
+    }
+
+    protected void sendLocallyCreated(SyncData<TYPE> data,
+            HashMap<String, Integer> remoteNewTaskNameMap) throws IOException {
+        int length;
+        length = data.localCreated.getCount();
+        for(int i = 0; i < length; i++) {
+            data.localCreated.moveToNext();
+            TYPE local = read(data.localCreated);
+            try {
+
+                String taskTitle = local.task.getValue(Task.TITLE);
+
+                /* If there exists an incoming remote task with the same name and no
+                 * mapping, we don't want to create this on the remote server,
+                 * because user could have synchronized like this before. Instead,
+                 * we create a mapping and do an update.
+                 */
+                if (remoteNewTaskNameMap.containsKey(taskTitle)) {
+                    int remoteIndex = remoteNewTaskNameMap.remove(taskTitle);
+                    TYPE remote = data.remoteUpdated.get(remoteIndex);
+
+                    transferIdentifiers(remote, local);
+                    push(local, remote);
+
+                    // re-read remote task after merge, update remote task list
+                    remote = pull(remote);
+                    remote.task.setId(local.task.getId());
+                    data.remoteUpdated.set(remoteIndex, remote);
+
+                } else {
+                    create(local);
+                }
+            } catch (Exception e) {
+                handleException("sync-local-created", e, false); //$NON-NLS-1$
+            }
+            write(local);
+        }
+    }
+
     // --- helper classes
 
     /** data structure builder */
     protected static class SyncData<TYPE extends SyncContainer> {
-        public final ArrayList<TYPE> remoteUpdated;
+        public ArrayList<TYPE> remoteUpdated;
 
-        public final TodorooCursor<Task> localCreated;
-        public final TodorooCursor<Task> localUpdated;
+        public TodorooCursor<Task> localCreated;
+        public TodorooCursor<Task> localUpdated;
 
         public SyncData(ArrayList<TYPE> remoteUpdated,
                 TodorooCursor<Task> localCreated,
