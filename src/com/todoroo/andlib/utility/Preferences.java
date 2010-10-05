@@ -162,7 +162,11 @@ public class Preferences {
      */
     public static boolean getBoolean(String key, boolean defValue) {
         Context context = ContextManager.getContext();
-        return getPrefs(context).getBoolean(key, defValue);
+        try {
+            return getPrefs(context).getBoolean(key, defValue);
+        } catch (ClassCastException e) {
+            return defValue;
+        }
     }
 
     /** Gets a boolean preference (e.g. a CheckBoxPreference setting)

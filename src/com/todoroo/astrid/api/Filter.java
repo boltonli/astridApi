@@ -20,7 +20,7 @@ import com.todoroo.andlib.sql.QueryTemplate;
  * @author Tim Su <tim@todoroo.com>
  *
  */
-public final class Filter extends FilterListItem {
+public class Filter extends FilterListItem {
 
     // --- constants
 
@@ -131,6 +131,14 @@ public final class Filter extends FilterListItem {
         dest.writeParcelable(valuesForNewTasks, 0);
     }
 
+    @Override
+    public void readFromParcel(Parcel source) {
+        super.readFromParcel(source);
+        title = source.readString();
+        sqlQuery = source.readString();
+        valuesForNewTasks = source.readParcelable(ContentValues.class.getClassLoader());
+    }
+
     /**
      * Parcelable Creator Object
      */
@@ -142,9 +150,6 @@ public final class Filter extends FilterListItem {
         public Filter createFromParcel(Parcel source) {
             Filter item = new Filter();
             item.readFromParcel(source);
-            item.title = source.readString();
-            item.sqlQuery = source.readString();
-            item.valuesForNewTasks = source.readParcelable(ContentValues.class.getClassLoader());
             return item;
         }
 
