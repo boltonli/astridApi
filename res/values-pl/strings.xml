@@ -8,19 +8,19 @@
     <!-- plurals: years -->
     <item quantity="one">1 rok</item>
     <!-- plurals: years -->
-    <item quantity="other">%d Lat</item>
+    <item quantity="other">%d lat</item>
   </plurals>
   <plurals name="DUt_months">
     <!-- plurals: months -->
     <item quantity="one">1 miesiąc</item>
     <!-- plurals: months -->
-    <item quantity="other">%d Miesięcy</item>
+    <item quantity="other">%d miesięcy</item>
   </plurals>
   <plurals name="DUt_weeks">
     <!-- plurals: days -->
     <item quantity="one">1 tydzień</item>
     <!-- plurals: days -->
-    <item quantity="other">%d Tygodni</item>
+    <item quantity="other">%d tygodni</item>
   </plurals>
   <plurals name="DUt_days">
     <!-- plurals: days -->
@@ -48,21 +48,21 @@
   </plurals>
   <plurals name="DUt_hoursShort">
     <!-- plurals: hours (abbreviated) -->
-    <item quantity="one">1 godz</item>
+    <item quantity="one">1 godz.</item>
     <!-- plurals: hours (abbreviated) -->
-    <item quantity="other">%d godz</item>
+    <item quantity="other">%d godz.</item>
   </plurals>
   <plurals name="DUt_minutesShort">
     <!-- plurals: minutes (abbreviated) -->
-    <item quantity="one">1 min</item>
+    <item quantity="one">1 min.</item>
     <!-- plurals: minutes (abbreviated) -->
-    <item quantity="other">%d min</item>
+    <item quantity="other">%d min.</item>
   </plurals>
   <plurals name="DUt_secondsShort">
     <!-- plurals: seconds (abbreviated) -->
-    <item quantity="one">1 sek</item>
+    <item quantity="one">1 sek.</item>
     <!-- plurals: seconds (abbreviated) -->
-    <item quantity="other">%d sek</item>
+    <item quantity="other">%d sek.</item>
   </plurals>
   <plurals name="Ntasks">
     <!-- plurals: tasks -->
@@ -83,7 +83,7 @@
   <string name="DLG_information_title">Informacja</string>
   
   <!-- error dialog title -->
-  <string name="DLG_error_title">Error!</string>
+  <string name="DLG_error_title">Błąd!</string>
   
   <!-- general dialog yes-->
   <string name="DLG_yes">Tak</string>
@@ -95,91 +95,94 @@
   <string name="DLG_close">Zamknij</string>
   
   <!-- general dialog done -->
-  <string name="DLG_done">Wykonano</string>
+  <string name="DLG_done">Gotowe</string>
   
   <!-- error dialog (%s => error message)-->
-  <string name="DLG_error">Oops, looks like an error occurred! Here\'s what happened:\n\n%s</string>
+  <string name="DLG_error">Ups! Wygląda na to, że wystąpił jakiś błąd! Oto, co się stało:\n\n%s</string>
   
   <!-- error dialog (no message indicated)-->
-  <string name="DLG_error_generic">Oops, looks like an error occurred!</string>
+  <string name="DLG_error_generic">Ups! Wygląda na to, że wystąpił jakiś błąd!</string>
   
   <!-- Progress dialog shown when doing something slow -->
-  <string name="DLG_wait">Please wait...</string>
+  <string name="DLG_wait">Proszę czekać...</string>
 
  <!-- ====================================================== SyncProvider == -->
           
   <!-- Sync Notification: message when sync service active -->
-  <string name="SyP_progress">Synchronizing your tasks...</string>
+  <string name="SyP_progress">Synchronizowanie Twoich zadań...</string>
   
   <!-- Sync Notification: toast when sync activated from activity -->
-  <string name="SyP_progress_toast">Synchronizing...</string>
+  <string name="SyP_progress_toast">Synchronizacja...</string>
   
   <!-- Sync Label: used in menu to denote synchronization -->
   <string name="SyP_label">Synchronizacja</string>  
 
+  <!-- Error msg when io exception  -->
+  <string name="SyP_ioerror">Błąd połączenia! Sprawdź swoje połączenie z Internetem!</string>
+
   <!-- ================================================== SyncPreferences == -->
   
   <!-- Status Group Label -->    
-  <string name="sync_SPr_group_status">Status</string>
+  <string name="sync_SPr_group_status">Stan</string>
   
   <!-- Sync Status: log in -->    
-  <string name="sync_status_loggedout">Not Logged In!</string>
+  <string name="sync_status_loggedout">Nie zalogowano!</string>
   <!-- Status: ongoing -->    
-  <string name="sync_status_ongoing">Sync Ongoing...</string>
+  <string name="sync_status_ongoing">Synchronizacja trwa...</string>
   <!-- Sync Status: success status (%s -> last sync date). Keep it short!-->    
-  <string name="sync_status_success">Last Sync: %s</string>
+  <string name="sync_status_success">Ostatnia synchronizacja: %s</string>
   <!-- Sync Status: error status (%s -> last attempted sync date) -->    
-  <string name="sync_status_failed">Failed On: %s</string>
+  <string name="sync_status_failed">Nieudana: %s</string>
   <!-- Sync Status: error subtitle (%s -> last successful sync date) -->    
-  <string name="sync_status_failed_subtitle">Last Successful Sync: %s</string>
+  <string name="sync_status_failed_subtitle">Ostatnia udana synchronizacja: %s</string>
   <!-- Sync Status: never sync'd -->    
-  <string name="sync_status_never">Never Synchronized!</string>
+  <string name="sync_status_never">Nigdy nie synchronizowano!</string>
 
   <!-- Options Group Label -->    
-  <string name="sync_SPr_group_options">Opcje</string>
+  <string name="sync_SPr_group_options">Ustawienia</string>
 
   <!-- Preference: Synchronization Interval Title -->    
-  <string name="sync_SPr_interval_title">Background Sync</string>
+  <string name="sync_SPr_interval_title">Synchronizacja w tle</string>
   <!-- Preference: Synchronization Interval Description (when disabled) -->
-  <string name="sync_SPr_interval_desc_disabled">Background synchronization is disabled</string>    
+  <string name="sync_SPr_interval_desc_disabled">Synchronizacja w tle wyłączona</string>    
   <!-- Preference: Synchronization Interval Description (%s => setting) -->
-  <string name="sync_SPr_interval_desc">Currently set to: %s</string>
+  <string name="sync_SPr_interval_desc">Aktualnie ustawione na: %s</string>
   
   <!-- Preference: Background Wifi Title -->  
-  <string name="sync_SPr_bgwifi_title">Wifi Only Setting</string>    
+  <string name="sync_SPr_bgwifi_title">Tylko połączenie Wi-Fi</string>    
   <!-- Preference: Background Wifi Description (enabled) -->
-  <string name="sync_SPr_bgwifi_desc_enabled">Background synchronization only happens when on Wifi</string>    
+  <string name="sync_SPr_bgwifi_desc_enabled">Synchronizacja w tle przebiega tylko poprzez Wi-Fi</string>    
   <!-- Preference: Background Wifi Description (disabled) -->
-  <string name="sync_SPr_bgwifi_desc_disabled">Background synchronization will always occur</string>
+  <string name="sync_SPr_bgwifi_desc_disabled">Synchronizowanie w tle zawsze, niezależnie od rodzaju połączenia</string>
   
   <!-- Actions Group Label  -->
   <string name="sync_SPr_group_actions">Działania</string>
 
   <!-- Synchronize Now Button -->    
-  <string name="sync_SPr_sync">Synchronizuj Teraz</string>
+  <string name="sync_SPr_sync">Synchronizuj teraz!</string>
   <!-- Synchronize Now Button if not logged in-->    
-  <string name="sync_SPr_sync_log_in">Log In &amp; Synchronize!</string>
+  <string name="sync_SPr_sync_log_in">Zaloguj &amp; Synchronizuj!</string>
   
   <!-- Sync: Clear Data Title -->
-  <string name="sync_SPr_forget">Log Out</string>
+  <string name="sync_SPr_forget">Wyloguj</string>
   <!-- Sync: Clear Data Description -->
-  <string name="sync_SPr_forget_description">Clears all synchronization data</string>
+  <string name="sync_SPr_forget_description">Czyści wszystkie dane synchronizacji</string>
 
   <!-- confirmation dialog for sync log out -->
-  <string name="sync_forget_confirm">Log out / clear synchronization data?</string>
+  <string name="sync_forget_confirm">Wyloguj / wyczyść dane synchronizacji?</string>
   
   <string-array name="sync_SPr_interval_entries">
       <!-- sync_SPr_interval_entries: Synchronization Intervals -->
-      <item>disable</item>
-      <item>every fifteen minutes</item>
-      <item>every thirty minutes</item>
-      <item>every hour</item>
-      <item>every three hours</item>
-      <item>every six hours</item>
-      <item>every twelve hours</item>
-      <item>every day</item>
-      <item>every three days</item>
-      <item>every week</item>
+      <item>Wyłączone</item>
+      <item>co 15 minut</item>
+      <item>co 30 minut</item>
+      <item>co godzinę</item>
+      <item>co 3 godziny</item>
+      <item>co 6 godzin</item>
+      <item>co 12 godzin</item>
+      <item>raz dziennie</item>
+      <item>co 3 dni</item>
+      <item>co tydzień</item>
   </string-array>    
     
 

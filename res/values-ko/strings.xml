@@ -117,10 +117,13 @@
   <!-- Sync Label: used in menu to denote synchronization -->
   <string name="SyP_label">동기화</string>  
 
+  <!-- Error msg when io exception  -->
+  <string name="SyP_ioerror">Connection Error! Check your Internet connection.</string>
+
   <!-- ================================================== SyncPreferences == -->
   
   <!-- Status Group Label -->    
-  <string name="sync_SPr_group_status">Status</string>
+  <string name="sync_SPr_group_status">상태</string>
   
   <!-- Sync Status: log in -->    
   <string name="sync_status_loggedout">Not Logged In!</string>

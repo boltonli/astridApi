@@ -117,6 +117,9 @@
   <!-- Sync Label: used in menu to denote synchronization -->
   <string name="SyP_label">Abgleich</string>  
 
+  <!-- Error msg when io exception  -->
+  <string name="SyP_ioerror">Verbindungsfehler! Überprüfen Sie Ihre Internetverbindung.</string>
+
   <!-- ================================================== SyncPreferences == -->
   
   <!-- Status Group Label -->    

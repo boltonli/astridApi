@@ -117,6 +117,9 @@
   <!-- Sync Label: used in menu to denote synchronization -->
   <string name="SyP_label">Synkronisering</string>  
 
+  <!-- Error msg when io exception  -->
+  <string name="SyP_ioerror">Tilkoblingsfeil! Kontroller at du er koblet til Internett</string>
+
   <!-- ================================================== SyncPreferences == -->
   
   <!-- Status Group Label -->    

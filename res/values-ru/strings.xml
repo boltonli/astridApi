@@ -83,7 +83,7 @@
   <string name="DLG_information_title">Информация</string>
   
   <!-- error dialog title -->
-  <string name="DLG_error_title">Error!</string>
+  <string name="DLG_error_title">Ошибка!</string>
   
   <!-- general dialog yes-->
   <string name="DLG_yes">Да</string>
@@ -98,10 +98,10 @@
   <string name="DLG_done">Готово</string>
   
   <!-- error dialog (%s => error message)-->
-  <string name="DLG_error">Oops, looks like an error occurred! Here\'s what happened:\n\n%s</string>
+  <string name="DLG_error">Ой, похоже произошла ошибка! Подробности ниже:\n\n%s</string>
   
   <!-- error dialog (no message indicated)-->
-  <string name="DLG_error_generic">Oops, looks like an error occurred!</string>
+  <string name="DLG_error_generic">Ой, похоже произошла ошибка!</string>
   
   <!-- Progress dialog shown when doing something slow -->
   <string name="DLG_wait">Пожалуйста, подождите…</string>
@@ -116,6 +116,9 @@
   
   <!-- Sync Label: used in menu to denote synchronization -->
   <string name="SyP_label">Синхронизация</string>  
+
+  <!-- Error msg when io exception  -->
+  <string name="SyP_ioerror">Ошибка соединения! Проверьте подключение к интернету.</string>
 
   <!-- ================================================== SyncPreferences == -->
   

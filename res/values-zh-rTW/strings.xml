@@ -117,6 +117,9 @@
   <!-- Sync Label: used in menu to denote synchronization -->
   <string name="SyP_label">同步</string>  
 
+  <!-- Error msg when io exception  -->
+  <string name="SyP_ioerror">連結錯誤! 檢查您的網際網路連線.</string>
+
   <!-- ================================================== SyncPreferences == -->
   
   <!-- Status Group Label -->    
