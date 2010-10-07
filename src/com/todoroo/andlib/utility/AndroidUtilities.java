@@ -1,11 +1,13 @@
 package com.todoroo.andlib.utility;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -28,8 +30,8 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.todoroo.andlib.service.ExceptionService;
@@ -421,6 +423,37 @@ public class AndroidUtilities {
         }
 
         return null;
+    }
+
+    /**
+     * From Android MyTracks project (http://mytracks.googlecode.com/).
+     * Licensed under the Apache Public License v2
+     * @param activity
+     * @param id
+     * @return
+     */
+    public static CharSequence readFile(Context activity, int id) {
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new InputStreamReader(
+                    activity.getResources().openRawResource(id)));
+            String line;
+            StringBuilder buffer = new StringBuilder();
+            while ((line = in.readLine()) != null) {
+                buffer.append(line).append('\n');
+            }
+            return buffer;
+        } catch (IOException e) {
+            return "";
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    // Ignore
+                }
+            }
+        }
     }
 
     // --- internal
