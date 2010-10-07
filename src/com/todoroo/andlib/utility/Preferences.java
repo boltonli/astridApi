@@ -17,7 +17,9 @@ import com.todoroo.andlib.service.ContextManager;
 public class Preferences {
 
     /**
-     * Helper to write to editor if key specified is null
+     * Helper to write to editor if key specified is null. Writes a String
+     * property with the given integer
+     *
      * @param prefs
      * @param editor
      * @param r
@@ -40,7 +42,7 @@ public class Preferences {
      */
     public static void setIfUnset(SharedPreferences prefs, Editor editor, Resources r, int keyResource, boolean value) {
         String key = r.getString(keyResource);
-        if(!prefs.contains(key))
+        if(!prefs.contains(key) || !(prefs.getAll().get(key) instanceof Boolean))
             editor.putBoolean(key, value);
     }
 
