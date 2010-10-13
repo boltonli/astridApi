@@ -88,20 +88,7 @@ abstract public class SyncMetadataService<TYPE extends SyncContainer> {
             tasks = taskDao.query(Query.select(Task.ID).where(Criterion.and(TaskCriteria.isActive(),
                     Task.CREATION_DATE.gt(lastSyncDate))).orderBy(Order.asc(Task.ID)));
 
-        try {
-            TodorooCursor<Metadata> metadata = getRemoteTaskMetadata();
-            try {
-                ArrayList<Long> matchingRows = new ArrayList<Long>();
-                joinRows(tasks, metadata, matchingRows, false);
-
-                return
-                taskDao.query(Query.select(properties).where(Task.ID.in(matchingRows.toArray(new Long[matchingRows.size()]))));
-            } finally {
-                metadata.close();
-            }
-        } finally {
-            tasks.close();
-        }
+        return joinWithMetadata(tasks, false, properties);
     }
 
     /**
@@ -117,15 +104,21 @@ abstract public class SyncMetadataService<TYPE extends SyncContainer> {
         else
             tasks = taskDao.query(Query.select(Task.ID).where(Task.MODIFICATION_DATE.
                     gt(lastSyncDate)).orderBy(Order.asc(Task.ID)));
+
+        return joinWithMetadata(tasks, true, properties);
+    }
+
+    private TodorooCursor<Task> joinWithMetadata(TodorooCursor<Task> tasks,
+            boolean both, Property<?>... properties) {
         try {
             TodorooCursor<Metadata> metadata = getRemoteTaskMetadata();
             try {
-
                 ArrayList<Long> matchingRows = new ArrayList<Long>();
-                joinRows(tasks, metadata, matchingRows, true);
+                joinRows(tasks, metadata, matchingRows, both);
 
                 return
-                taskDao.query(Query.select(properties).where(Task.ID.in(matchingRows.toArray(new Long[matchingRows.size()]))));
+                taskDao.query(Query.select(properties).where(Task.ID.in(
+                        matchingRows.toArray(new Long[matchingRows.size()]))));
             } finally {
                 metadata.close();
             }
