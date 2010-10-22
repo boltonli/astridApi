@@ -3,6 +3,7 @@
  */
 package com.todoroo.andlib.service;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 
@@ -26,6 +27,8 @@ public final class ContextManager {
      */
     public static void setContext(Context context) {
         if(context == null)
+            return;
+        if(ContextManager.context != null && !(context instanceof Activity))
             return;
         ContextManager.context = context;
     }
