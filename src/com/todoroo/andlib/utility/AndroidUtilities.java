@@ -30,8 +30,8 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
 import android.widget.TextView;
 
 import com.todoroo.andlib.service.ExceptionService;
@@ -444,7 +444,7 @@ public class AndroidUtilities {
             }
             return buffer;
         } catch (IOException e) {
-            return "";
+            return ""; //$NON-NLS-1$
         } finally {
             if (in != null) {
                 try {

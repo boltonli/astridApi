@@ -22,7 +22,6 @@ import com.todoroo.andlib.sql.Query;
 public class ContentResolverDao<TYPE extends AbstractModel> {
 
     /** class of model */
-    @SuppressWarnings("unused")
     private final Class<TYPE> modelClass;
 
     /** base content uri */
