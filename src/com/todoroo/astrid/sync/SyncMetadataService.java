@@ -14,9 +14,9 @@ import com.todoroo.andlib.sql.Order;
 import com.todoroo.andlib.sql.Query;
 import com.todoroo.astrid.data.Metadata;
 import com.todoroo.astrid.data.MetadataApiDao;
-import com.todoroo.astrid.data.MetadataApiDao.MetadataCriteria;
 import com.todoroo.astrid.data.Task;
 import com.todoroo.astrid.data.TaskApiDao;
+import com.todoroo.astrid.data.MetadataApiDao.MetadataCriteria;
 import com.todoroo.astrid.data.TaskApiDao.TaskCriteria;
 
 abstract public class SyncMetadataService<TYPE extends SyncContainer> {
@@ -80,13 +80,8 @@ abstract public class SyncMetadataService<TYPE extends SyncContainer> {
      * @return
      */
     public TodorooCursor<Task> getLocallyCreated(Property<?>... properties) {
-        long lastSyncDate = getUtilities().getLastSyncDate();
-        TodorooCursor<Task> tasks;
-        if(lastSyncDate == 0)
-            tasks = taskDao.query(Query.select(Task.ID).where(TaskCriteria.isActive()).orderBy(Order.asc(Task.ID)));
-        else
-            tasks = taskDao.query(Query.select(Task.ID).where(Criterion.and(TaskCriteria.isActive(),
-                    Task.CREATION_DATE.gt(lastSyncDate))).orderBy(Order.asc(Task.ID)));
+        TodorooCursor<Task> tasks = taskDao.query(Query.select(Task.ID).where(
+                TaskCriteria.isActive()).orderBy(Order.asc(Task.ID)));
 
         return joinWithMetadata(tasks, false, properties);
     }
