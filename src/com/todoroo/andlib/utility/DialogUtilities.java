@@ -91,7 +91,8 @@ public class DialogUtilities {
      * @param text
      * @param okListener
      */
-    public static void okDialog(final Activity activity, final int icon, final CharSequence text,
+    public static void okDialog(final Activity activity, final String title,
+            final int icon, final CharSequence text,
             final DialogInterface.OnClickListener okListener) {
         if(activity.isFinishing())
             return;
@@ -99,7 +100,7 @@ public class DialogUtilities {
         activity.runOnUiThread(new Runnable() {
             public void run() {
                 new AlertDialog.Builder(activity)
-                .setTitle(R.string.DLG_information_title)
+                .setTitle(title)
                 .setMessage(text)
                 .setIcon(icon)
                 .setPositiveButton(android.R.string.ok, okListener)
