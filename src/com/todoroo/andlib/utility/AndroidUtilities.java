@@ -10,8 +10,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigInteger;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
@@ -453,6 +455,28 @@ public class AndroidUtilities {
                     // Ignore
                 }
             }
+        }
+    }
+
+    /**
+     * Performs an md5 hash on the input string
+     * @param input
+     * @return
+     */
+    @SuppressWarnings("nls")
+    public static String md5(String input) {
+        try {
+            byte[] bytesOfMessage = input.getBytes("UTF-8");
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] digest = md.digest(bytesOfMessage);
+            BigInteger bigInt = new BigInteger(1,digest);
+            String hashtext = bigInt.toString(16);
+            while(hashtext.length() < 32 ){
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } catch (Exception e) {
+            return "";
         }
     }
 
