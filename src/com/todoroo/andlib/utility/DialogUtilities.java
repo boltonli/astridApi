@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
+import android.webkit.WebView;
 
 import com.todoroo.astrid.api.R;
 
@@ -37,6 +38,26 @@ public class DialogUtilities {
                 .show().setOwnerActivity(activity);
             }
         });
+    }
+
+    /**
+     * Display an OK dialog with HTML content
+     *
+     * @param context
+     * @param html
+     * @param title
+     */
+    public static void htmlDialog(Context context, String html, int title) {
+        WebView webView = new WebView(context);
+        webView.loadData(html, "text/html", "utf-8"); //$NON-NLS-1$ //$NON-NLS-2$
+        webView.setBackgroundColor(0);
+
+        new AlertDialog.Builder(context)
+        .setTitle(title)
+        .setView(webView)
+        .setIcon(android.R.drawable.ic_dialog_info)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
     }
 
     /**
