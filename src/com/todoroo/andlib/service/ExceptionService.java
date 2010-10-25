@@ -41,8 +41,13 @@ public class ExceptionService {
         if(errorReporters == null)
             return;
 
-        for(ErrorReporter reporter : errorReporters)
-            reporter.handleError(name, error);
+        for(ErrorReporter reporter : errorReporters) {
+            try {
+                reporter.handleError(name, error);
+            } catch (Exception e) {
+                Log.e("astrid-exception-service", "Exception handling error", e); //$NON-NLS-1$ //$NON-NLS-2$
+            }
+        }
     }
 
     /**
