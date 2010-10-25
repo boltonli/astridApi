@@ -3,6 +3,7 @@ package com.todoroo.andlib.utility;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -186,7 +187,9 @@ public class DialogUtilities {
      * @param activity
      * @param dialog
      */
-    public static void dismissDialog(Activity activity, final ProgressDialog dialog) {
+    public static void dismissDialog(Activity activity, final Dialog dialog) {
+        if(dialog == null)
+            return;
         activity.runOnUiThread(new Runnable() {
             public void run() {
                 try {
