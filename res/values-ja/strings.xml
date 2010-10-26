@@ -77,13 +77,13 @@
   <string name="DLG_confirm_title">確認</string>
   
   <!-- question dialog title -->
-  <string name="DLG_question_title">Question:</string>
+  <string name="DLG_question_title">確認</string>
   
   <!-- information dialog title -->
   <string name="DLG_information_title">インフォメーション</string>
   
   <!-- error dialog title -->
-  <string name="DLG_error_title">Error!</string>
+  <string name="DLG_error_title">エラー</string>
   
   <!-- general dialog yes-->
   <string name="DLG_yes">はい</string>
@@ -126,17 +126,17 @@
   <string name="sync_SPr_group_status">状況</string>
   
   <!-- Sync Status: log in -->    
-  <string name="sync_status_loggedout">Not Logged In!</string>
+  <string name="sync_status_loggedout">ログインしていません</string>
   <!-- Status: ongoing -->    
-  <string name="sync_status_ongoing">Sync Ongoing...</string>
+  <string name="sync_status_ongoing">同期中</string>
   <!-- Sync Status: success status (%s -> last sync date). Keep it short!-->    
   <string name="sync_status_success">前回の同期: %s</string>
   <!-- Sync Status: error status (%s -> last attempted sync date) -->    
-  <string name="sync_status_failed">Failed On: %s</string>
+  <string name="sync_status_failed">失敗: %s</string>
   <!-- Sync Status: error subtitle (%s -> last successful sync date) -->    
-  <string name="sync_status_failed_subtitle">Last Successful Sync: %s</string>
+  <string name="sync_status_failed_subtitle">最後の同期: %s</string>
   <!-- Sync Status: never sync'd -->    
-  <string name="sync_status_never">Never Synchronized!</string>
+  <string name="sync_status_never">同期していません</string>
 
   <!-- Options Group Label -->    
   <string name="sync_SPr_group_options">オプション</string>
@@ -149,9 +149,9 @@
   <string name="sync_SPr_interval_desc">現在の設定: %s</string>
   
   <!-- Preference: Background Wifi Title -->  
-  <string name="sync_SPr_bgwifi_title">Wifi Only Setting</string>    
+  <string name="sync_SPr_bgwifi_title">Wi-Fi のみ</string>    
   <!-- Preference: Background Wifi Description (enabled) -->
-  <string name="sync_SPr_bgwifi_desc_enabled">Background synchronization only happens when on Wifi</string>    
+  <string name="sync_SPr_bgwifi_desc_enabled">Wi-Fi が有効なときだけバックグラウンドで同期する</string>    
   <!-- Preference: Background Wifi Description (disabled) -->
   <string name="sync_SPr_bgwifi_desc_disabled">Background synchronization will always occur</string>
   
@@ -166,10 +166,10 @@
   <!-- Sync: Clear Data Title -->
   <string name="sync_SPr_forget">ログアウト</string>
   <!-- Sync: Clear Data Description -->
-  <string name="sync_SPr_forget_description">Clears all synchronization data</string>
+  <string name="sync_SPr_forget_description">すべての同期データを消去します</string>
 
   <!-- confirmation dialog for sync log out -->
-  <string name="sync_forget_confirm">Log out / clear synchronization data?</string>
+  <string name="sync_forget_confirm">ログアウトと同期データを消去しますか?</string>
   
   <string-array name="sync_SPr_interval_entries">
       <!-- sync_SPr_interval_entries: Synchronization Intervals -->
