@@ -1,5 +1,8 @@
 package com.todoroo.andlib.data;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -101,4 +104,41 @@ public class ContentResolverDao<TYPE extends AbstractModel> {
         return true;
     }
 
+    /**
+     * Returns object corresponding to the given identifier
+     *
+     * @param database
+     * @param table
+     *            name of table
+     * @param properties
+     *            properties to read
+     * @param id
+     *            id of item
+     * @return null if no item found
+     */
+    public TYPE fetch(long id, Property<?>... properties) {
+        TodorooCursor<TYPE> cursor = query(
+                Query.select(properties).where(AbstractModel.ID_PROPERTY.eq(id)));
+        try {
+            if (cursor.getCount() == 0)
+                return null;
+            cursor.moveToFirst();
+            Constructor<TYPE> constructor = modelClass.getConstructor(TodorooCursor.class);
+            return constructor.newInstance(cursor);
+        } catch (SecurityException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } finally {
+            cursor.close();
+        }
+    }
 }

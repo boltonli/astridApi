@@ -32,8 +32,8 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.todoroo.andlib.service.ExceptionService;
@@ -478,6 +478,18 @@ public class AndroidUtilities {
         } catch (Exception e) {
             return "";
         }
+    }
+
+    /**
+     * Create an intent to a remote activity
+     * @param appPackage
+     * @param activityClass
+     * @return
+     */
+    public static Intent remoteIntent(String appPackage, String activityClass) {
+        Intent intent = new Intent();
+        intent.setClassName(appPackage, activityClass);
+        return intent;
     }
 
     // --- internal

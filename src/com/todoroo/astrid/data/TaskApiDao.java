@@ -3,8 +3,10 @@ package com.todoroo.astrid.data;
 import android.content.Context;
 
 import com.todoroo.andlib.data.ContentResolverDao;
+import com.todoroo.andlib.data.TodorooCursor;
 import com.todoroo.andlib.sql.Criterion;
 import com.todoroo.andlib.sql.Functions;
+import com.todoroo.andlib.sql.Query;
 
 /**
  * Data access object for accessing Astrid's {@link Task} table. If you
@@ -84,6 +86,34 @@ public class TaskApiDao extends ContentResolverDao<Task> {
             return Criterion.or(Task.TITLE.isNull(), Task.TITLE.eq(""));
         }
 
+    }
+
+    /**
+     * Count tasks matching criterion
+     * @param criterion
+     * @return # of tasks matching
+     */
+    public int countTasks(Criterion criterion) {
+        TodorooCursor<Task> cursor = query(Query.select(Task.ID).where(criterion));
+        try {
+            return cursor.getCount();
+        } finally {
+            cursor.close();
+        }
+    }
+
+    /**
+     * Count tasks matching query tepmlate
+     * @param queryTemplate
+     * @return # of tasks matching
+     */
+    public int countTasks(String queryTemplate) {
+        TodorooCursor<Task> cursor = query(Query.select(Task.ID).withQueryTemplate(queryTemplate));
+        try {
+            return cursor.getCount();
+        } finally {
+            cursor.close();
+        }
     }
 
 }
