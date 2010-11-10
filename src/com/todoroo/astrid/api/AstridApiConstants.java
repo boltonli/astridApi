@@ -247,6 +247,13 @@ public class AstridApiConstants {
     public static final String BROADCAST_EVENT_FLUSH_DETAILS = PACKAGE + ".FLUSH_DETAILS";
 
     /**
+     * Action name for broadcast intent notifying that task was created or
+     * title was changed
+     * <li> EXTRAS_TASK_ID id of the task
+     */
+    public static final String BROADCAST_EVENT_TASK_LIST_UPDATED = PACKAGE + ".TASK_LIST_UPDATED";
+
+    /**
      * Action name for broadcast intent notifying that task was completed
      * <li> EXTRAS_TASK_ID id of the task
      */
