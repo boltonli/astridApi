@@ -23,6 +23,8 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -490,6 +492,20 @@ public class AndroidUtilities {
         Intent intent = new Intent();
         intent.setClassName(appPackage, activityClass);
         return intent;
+    }
+
+    /**
+     * Gets application signature
+     * @return application signature, or null if an error was encountered
+     */
+    public static String getSignature(Context context, String packageName) {
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName,
+                    PackageManager.GET_SIGNATURES);
+            return packageInfo.signatures[0].toCharsString();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     // --- internal
