@@ -31,6 +31,11 @@ public class AstridApiConstants {
      */
     public static final String PERMISSION_WRITE = PACKAGE + ".WRITE";
 
+    /**
+     * Name of Astrid's publicly readable preference store
+     */
+    public static final String PUBLIC_PREFS = "public";
+
     // --- Content Provider
 
     /**
