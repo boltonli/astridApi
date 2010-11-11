@@ -15,8 +15,8 @@ import android.app.Service;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.todoroo.andlib.data.TodorooCursor;
 import com.todoroo.andlib.data.Property.LongProperty;
+import com.todoroo.andlib.data.TodorooCursor;
 import com.todoroo.andlib.service.NotificationManager;
 import com.todoroo.astrid.api.R;
 import com.todoroo.astrid.data.Task;
@@ -176,6 +176,9 @@ public abstract class SyncProvider<TYPE extends SyncContainer> {
                     }
                 }
             }).start();
+        } else {
+            // unit test
+            initiateManual((Activity)context);
         }
     }
 
