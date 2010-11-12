@@ -85,8 +85,13 @@ abstract public class SyncBackgroundService extends Service {
      * Schedules repeating alarm for auto-synchronization
      */
     public void scheduleService() {
-        int syncFrequencySeconds = Preferences.getIntegerFromString(
-                getSyncUtilities().getSyncIntervalKey(), -1);
+        int syncFrequencySeconds = 0;
+        try {
+            syncFrequencySeconds = Preferences.getIntegerFromString(
+                    getSyncUtilities().getSyncIntervalKey(), -1);
+        } catch(ClassCastException e) {
+            Preferences.setStringFromInteger(getSyncUtilities().getSyncIntervalKey(), 0);
+        }
         Context context = ContextManager.getContext();
         if(syncFrequencySeconds <= 0) {
     	    unscheduleService(context);

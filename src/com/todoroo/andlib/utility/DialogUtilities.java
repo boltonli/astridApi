@@ -27,7 +27,7 @@ public class DialogUtilities {
         if(activity.isFinishing())
             return;
 
-        activity.runOnUiThread(new Runnable() {
+        tryOnUiThread(activity, new Runnable() {
             public void run() {
                 new AlertDialog.Builder(activity)
                 .setTitle(R.string.DLG_question_title)
@@ -73,7 +73,7 @@ public class DialogUtilities {
         if(activity.isFinishing())
             return;
 
-        activity.runOnUiThread(new Runnable() {
+        tryOnUiThread(activity, new Runnable() {
             public void run() {
                 new AlertDialog.Builder(activity)
                 .setTitle(R.string.DLG_information_title)
@@ -98,7 +98,7 @@ public class DialogUtilities {
         if(activity.isFinishing())
             return;
 
-        activity.runOnUiThread(new Runnable() {
+        tryOnUiThread(activity, new Runnable() {
             public void run() {
                 new AlertDialog.Builder(activity)
                 .setTitle(title)
@@ -125,7 +125,7 @@ public class DialogUtilities {
         if(activity.isFinishing())
             return;
 
-        activity.runOnUiThread(new Runnable() {
+        tryOnUiThread(activity, new Runnable() {
             public void run() {
                 new AlertDialog.Builder(activity)
                 .setTitle(title)
@@ -152,7 +152,7 @@ public class DialogUtilities {
         if(activity.isFinishing())
             return;
 
-        activity.runOnUiThread(new Runnable() {
+        tryOnUiThread(activity, new Runnable() {
             public void run() {
                 new AlertDialog.Builder(activity)
                 .setTitle(R.string.DLG_confirm_title)
@@ -190,12 +190,26 @@ public class DialogUtilities {
     public static void dismissDialog(Activity activity, final Dialog dialog) {
         if(dialog == null)
             return;
-        activity.runOnUiThread(new Runnable() {
+        tryOnUiThread(activity, new Runnable() {
             public void run() {
                 try {
                     dialog.dismiss();
                 } catch (Exception e) {
                     // could have killed activity
+                }
+            }
+        });
+    }
+
+
+    private static void tryOnUiThread(Activity activity, final Runnable runnable) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    runnable.run();
+                } catch (Exception e) {
+                    // probably window was closed
                 }
             }
         });

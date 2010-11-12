@@ -222,19 +222,24 @@ public class AndroidUtilities {
         for(int i = 0; i < pairs.length; i += 2) {
             String key = pairs[i].replaceAll(SEPARATOR_ESCAPE, SERIALIZATION_SEPARATOR);
             String value = pairs[i+1].substring(1);
-            switch(pairs[i+1].charAt(0)) {
-            case 'i':
-                result.put(key, Integer.parseInt(value));
-                break;
-            case 'd':
-                result.put(key, Double.parseDouble(value));
-                break;
-            case 'l':
-                result.put(key, Long.parseLong(value));
-                break;
-            case 's':
-                result.put(key, value.replace(SEPARATOR_ESCAPE, SERIALIZATION_SEPARATOR));
-                break;
+            try {
+                switch(pairs[i+1].charAt(0)) {
+                case 'i':
+                    result.put(key, Integer.parseInt(value));
+                    break;
+                case 'd':
+                    result.put(key, Double.parseDouble(value));
+                    break;
+                case 'l':
+                    result.put(key, Long.parseLong(value));
+                    break;
+                case 's':
+                    result.put(key, value.replace(SEPARATOR_ESCAPE, SERIALIZATION_SEPARATOR));
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                // failed parse to number, try to put a string
+                result.put(key, value);
             }
         }
         return result;
