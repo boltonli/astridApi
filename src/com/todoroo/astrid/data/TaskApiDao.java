@@ -1,12 +1,16 @@
 package com.todoroo.astrid.data;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 
 import com.todoroo.andlib.data.ContentResolverDao;
 import com.todoroo.andlib.data.TodorooCursor;
+import com.todoroo.andlib.service.ContextManager;
 import com.todoroo.andlib.sql.Criterion;
 import com.todoroo.andlib.sql.Functions;
 import com.todoroo.andlib.sql.Query;
+import com.todoroo.astrid.api.AstridApiConstants;
 
 /**
  * Data access object for accessing Astrid's {@link Task} table. If you
@@ -114,6 +118,62 @@ public class TaskApiDao extends ContentResolverDao<Task> {
         } finally {
             cursor.close();
         }
+    }
+
+    @Override
+    public boolean save(Task model) {
+        ContentValues setValues = model.getSetValues();
+        if(super.save(model)) {
+            afterSave(model, setValues);
+            return true;
+        }
+        return false;
+    }
+
+    /** @return true if task change shouldn't be broadcast */
+    public static boolean insignificantChange(ContentValues values) {
+        if(values == null || values.size() == 0)
+            return true;
+
+        if(values.containsKey(Task.DETAILS_DATE.name) &&
+                values.containsKey(Task.DETAILS.name) &&
+                values.size() == 2)
+            return true;
+
+        if(values.containsKey(Task.REMINDER_LAST.name) &&
+                values.size() == 1)
+            return true;
+
+        return false;
+    }
+
+    /**
+     * Send broadcasts on task change (triggers things like task repeats)
+     * @param task task that was saved
+     * @param values values that were updated
+     */
+    public static void afterSave(Task task, ContentValues values) {
+        if(insignificantChange(values))
+            return;
+
+        if(values.containsKey(Task.COMPLETION_DATE.name) && task.isCompleted()) {
+            Context context = ContextManager.getContext();
+            Intent broadcastIntent;
+            broadcastIntent = new Intent(AstridApiConstants.BROADCAST_EVENT_TASK_COMPLETED);
+            broadcastIntent.putExtra(AstridApiConstants.EXTRAS_TASK_ID, task.getId());
+            context.sendOrderedBroadcast(broadcastIntent, null);
+        }
+
+        afterTaskListChanged();
+    }
+
+    /**
+     * Send broadcast when task list changes. Widgets should update.
+     */
+    public static void afterTaskListChanged() {
+        Context context = ContextManager.getContext();
+        Intent broadcastIntent = new Intent(AstridApiConstants.BROADCAST_EVENT_TASK_LIST_UPDATED);
+        context.sendOrderedBroadcast(broadcastIntent, null);
     }
 
 }
