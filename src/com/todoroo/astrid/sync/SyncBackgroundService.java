@@ -106,7 +106,7 @@ abstract public class SyncBackgroundService extends Service {
         offset = Math.max(offset, AUTO_SYNC_MIN_OFFSET);
 
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0,
+        PendingIntent pendingIntent = PendingIntent.getService(context, getSyncUtilities().getSyncIntervalKey(),
                 createAlarmIntent(context), PendingIntent.FLAG_UPDATE_CURRENT);
 
         Log.i("Astrid", "Autosync set for " + offset / 1000 //$NON-NLS-1$ //$NON-NLS-2$
