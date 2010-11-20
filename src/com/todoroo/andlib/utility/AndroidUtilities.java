@@ -34,10 +34,11 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
 import android.widget.TextView;
 
+import com.todoroo.andlib.data.Property;
 import com.todoroo.andlib.service.ExceptionService;
 
 /**
@@ -511,6 +512,23 @@ public class AndroidUtilities {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    /**
+     * Join items to a list
+     * @param <TYPE>
+     * @param list
+     * @param newList
+     * @param newItems
+     * @return
+     */
+    public static Property<?>[] addToArray(Property<?>[] list, Property<?>... newItems) {
+        Property<?>[] newList = new Property<?>[list.length + newItems.length];
+        for(int i = 0; i < list.length; i++)
+            newList[i] = list[i];
+        for(int i = 0; i < newItems.length; i++)
+            newList[list.length + i] = newItems[i];
+        return newList;
     }
 
     // --- internal
