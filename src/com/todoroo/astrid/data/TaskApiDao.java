@@ -11,6 +11,7 @@ import com.todoroo.andlib.sql.Criterion;
 import com.todoroo.andlib.sql.Functions;
 import com.todoroo.andlib.sql.Query;
 import com.todoroo.astrid.api.AstridApiConstants;
+import com.todoroo.astrid.api.PermaSql;
 
 /**
  * Data access object for accessing Astrid's {@link Task} table. If you
@@ -112,6 +113,7 @@ public class TaskApiDao extends ContentResolverDao<Task> {
      * @return # of tasks matching
      */
     public int countTasks(String queryTemplate) {
+        queryTemplate = PermaSql.replacePlaceholders(queryTemplate);
         TodorooCursor<Task> cursor = query(Query.select(Task.ID).withQueryTemplate(queryTemplate));
         try {
             return cursor.getCount();
