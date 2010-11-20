@@ -158,10 +158,12 @@ public class TaskApiDao extends ContentResolverDao<Task> {
 
         if(values.containsKey(Task.COMPLETION_DATE.name) && task.isCompleted()) {
             Context context = ContextManager.getContext();
-            Intent broadcastIntent;
-            broadcastIntent = new Intent(AstridApiConstants.BROADCAST_EVENT_TASK_COMPLETED);
-            broadcastIntent.putExtra(AstridApiConstants.EXTRAS_TASK_ID, task.getId());
-            context.sendOrderedBroadcast(broadcastIntent, null);
+            if(context != null) {
+                Intent broadcastIntent;
+                broadcastIntent = new Intent(AstridApiConstants.BROADCAST_EVENT_TASK_COMPLETED);
+                broadcastIntent.putExtra(AstridApiConstants.EXTRAS_TASK_ID, task.getId());
+                context.sendOrderedBroadcast(broadcastIntent, null);
+            }
         }
 
         afterTaskListChanged();
@@ -172,8 +174,10 @@ public class TaskApiDao extends ContentResolverDao<Task> {
      */
     public static void afterTaskListChanged() {
         Context context = ContextManager.getContext();
-        Intent broadcastIntent = new Intent(AstridApiConstants.BROADCAST_EVENT_TASK_LIST_UPDATED);
-        context.sendOrderedBroadcast(broadcastIntent, null);
+        if(context != null) {
+            Intent broadcastIntent = new Intent(AstridApiConstants.BROADCAST_EVENT_TASK_LIST_UPDATED);
+            context.sendOrderedBroadcast(broadcastIntent, null);
+        }
     }
 
 }
