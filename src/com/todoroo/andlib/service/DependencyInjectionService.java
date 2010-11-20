@@ -3,6 +3,8 @@ package com.todoroo.andlib.service;
 import java.lang.reflect.Field;
 import java.util.LinkedList;
 
+import android.content.Context;
+
 
 
 /**
@@ -32,6 +34,8 @@ public class DependencyInjectionService {
      */
     @SuppressWarnings("nls")
     public void inject(Object caller) {
+        if(caller instanceof Context)
+            ContextManager.setContext((Context)caller);
 
         // Traverse through class and all parent classes, looking for
         // fields declared with the @Autowired annotation and using
