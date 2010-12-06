@@ -90,16 +90,16 @@ public class DateUtilities {
      */
     @SuppressWarnings("nls")
     public static String getDateString(Context context, Date date) {
-        String month = "'" + DateUtils.getMonthString(date.getMonth() +
-                Calendar.JANUARY, DateUtils.LENGTH_MEDIUM) + "'";
+        String month = DateUtils.getMonthString(date.getMonth() +
+                Calendar.JANUARY, DateUtils.LENGTH_MEDIUM);
         String value;
         // united states, you are special
         if (Locale.US.equals(Locale.getDefault())
                 || Locale.CANADA.equals(Locale.getDefault()))
-            value = month + " d yyyy";
+            value = "'#' d yyyy";
         else
-            value = "d " + month + " yyyy";
-        return new SimpleDateFormat(value).format(date);
+            value = "d '#' yyyy";
+        return new SimpleDateFormat(value).format(date).replace("#", month);
     }
 
     /**
