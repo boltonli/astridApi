@@ -42,6 +42,8 @@ public class SortHelper {
     @SuppressWarnings("nls")
     public static String adjustQueryForFlagsAndSort(String originalSql, int flags, int sort) {
         // sort
+        if(originalSql == null)
+            originalSql = "";
         if(!originalSql.toUpperCase().contains("ORDER BY")) {
             Order order;
             switch(sort) {
