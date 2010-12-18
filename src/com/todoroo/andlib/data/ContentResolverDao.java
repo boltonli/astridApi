@@ -138,7 +138,11 @@ public class ContentResolverDao<TYPE extends AbstractModel> {
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
         } finally {
-            cursor.close();
+            try {
+                cursor.close();
+            } catch (NullPointerException e) {
+                // cursor was not open
+            }
         }
     }
 }
