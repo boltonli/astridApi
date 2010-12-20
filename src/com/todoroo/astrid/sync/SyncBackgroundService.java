@@ -31,9 +31,6 @@ abstract public class SyncBackgroundService extends Service {
 	/** Minimum time before an auto-sync */
 	private static final long AUTO_SYNC_MIN_OFFSET = 5*60*1000L;
 
-    /** alarm identifier */
-    public static final String SYNC_ACTION = "sync"; //$NON-NLS-1$
-
     @Autowired private ExceptionService exceptionService;
 
     // --- abstract methods
@@ -52,7 +49,7 @@ abstract public class SyncBackgroundService extends Service {
     @Override
     public void onStart(Intent intent, int startId) {
         try {
-            if(intent != null && SYNC_ACTION.equals(intent.getAction()))
+            if(intent != null)
                 startSynchronization(this);
         } catch (Exception e) {
             exceptionService.reportError(getSyncUtilities().getIdentifier() + "-bg-sync", e); //$NON-NLS-1$
@@ -134,12 +131,10 @@ abstract public class SyncBackgroundService extends Service {
     /** Create the alarm intent */
     private Intent createAlarmIntent(Context context) {
         Intent intent = new Intent(context, getClass());
-        intent.setAction(SYNC_ACTION);
         return intent;
     }
 
     // --- utility methods
-
 
     private long computeNextSyncOffset(long interval) {
         // figure out last synchronize time
