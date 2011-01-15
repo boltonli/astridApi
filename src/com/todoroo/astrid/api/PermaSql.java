@@ -51,7 +51,7 @@ public final class PermaSql {
             date.setHours(23);
             date.setMinutes(59);
             date.setSeconds(59);
-            long time = date.getTime();
+            long time = date.getTime() / 1000l * 1000l; // chop milliseconds off
             value = value.replace(VALUE_EOD_YESTERDAY, Long.toString(time - DateUtilities.ONE_DAY));
             value = value.replace(VALUE_EOD, Long.toString(time));
             value = value.replace(VALUE_EOD_TOMORROW, Long.toString(time + DateUtilities.ONE_DAY));
