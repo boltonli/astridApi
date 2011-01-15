@@ -15,8 +15,8 @@ import android.app.Service;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.todoroo.andlib.data.Property.LongProperty;
 import com.todoroo.andlib.data.TodorooCursor;
+import com.todoroo.andlib.data.Property.LongProperty;
 import com.todoroo.andlib.service.NotificationManager;
 import com.todoroo.astrid.api.R;
 import com.todoroo.astrid.data.Task;
@@ -53,11 +53,8 @@ public abstract class SyncProvider<TYPE extends SyncContainer> {
      * Perform synchronize. Since this can be called from background services,
      * you should not open up new activities. Instead, if the user is not signed
      * in, your service should do nothing.
-     *
-     * @param service
-     *            context
      */
-    abstract protected void initiateBackground(Service service);
+    abstract protected void initiateBackground();
 
     /**
      * Updates the text of a notification and the intent to open when tapped
@@ -170,7 +167,7 @@ public abstract class SyncProvider<TYPE extends SyncContainer> {
             new Thread(new Runnable() {
                 public void run() {
                     try {
-                        initiateBackground((Service)context);
+                        initiateBackground();
                     } finally {
                         nm.cancel(notificationId);
                     }
@@ -178,7 +175,7 @@ public abstract class SyncProvider<TYPE extends SyncContainer> {
             }).start();
         } else {
             // unit test
-            initiateManual((Activity)context);
+            initiateBackground();
         }
     }
 
