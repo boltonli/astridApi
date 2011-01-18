@@ -4,6 +4,7 @@
 package com.todoroo.astrid.api;
 
 import android.app.PendingIntent;
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -26,6 +27,11 @@ public class TaskAction implements Parcelable {
     public PendingIntent intent = null;
 
     /**
+     * Quick action icon
+     */
+    public Bitmap icon = null;
+
+    /**
      * Create an EditOperation object
      *
      * @param text
@@ -33,10 +39,11 @@ public class TaskAction implements Parcelable {
      * @param intent
      *            intent to invoke. {@link #EXTRAS_TASK_ID} will be passed
      */
-    public TaskAction(String text, PendingIntent intent) {
+    public TaskAction(String text, PendingIntent intent, Bitmap icon) {
         super();
         this.text = text;
         this.intent = intent;
+        this.icon = icon;
     }
 
     // --- parcelable helpers
@@ -54,6 +61,7 @@ public class TaskAction implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(text);
         dest.writeParcelable(intent, 0);
+        dest.writeParcelable(icon, 0);
     }
 
     /**
@@ -64,8 +72,9 @@ public class TaskAction implements Parcelable {
          * {@inheritDoc}
          */
         public TaskAction createFromParcel(Parcel source) {
-            return new TaskAction(source.readString(), (PendingIntent)source.readParcelable(
-                    PendingIntent.class.getClassLoader()));
+            return new TaskAction(source.readString(),
+                    (PendingIntent)source.readParcelable(PendingIntent.class.getClassLoader()),
+                    (Bitmap)source.readParcelable(Bitmap.class.getClassLoader()));
         }
 
         /**
